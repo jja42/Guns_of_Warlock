@@ -20,7 +20,6 @@ public class Inventory : MonoBehaviour
             GiveItem("Gun");
             GiveItem("Fireball");
             init = true;
-            print("items given");
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
