@@ -7,16 +7,18 @@ public class Inventory : MonoBehaviour
     public List<Item> characterItems = new List<Item>();
     public ItemDatabase itemDatabase;
     public UI_Inventory inventoryUI;
+    bool init = false;
     public void Start()
     {
         inventoryUI.gameObject.SetActive(false);
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (!init)
         {
             GiveItem("Gun");
             GiveItem("Fireball");
+            init = true;
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
