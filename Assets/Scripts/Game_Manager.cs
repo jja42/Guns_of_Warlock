@@ -7,7 +7,7 @@ public class Game_Manager : MonoBehaviour
     public static Game_Manager instance;
     public bool paused = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
     }

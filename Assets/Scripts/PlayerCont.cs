@@ -24,7 +24,8 @@ public class PlayerCont : MonoBehaviour
     public AudioClip jump;
     public AudioClip shoot;
     public AudioClip hurt;
-    public int idle_timer;
+    private GameObject npc;
+    public GameObject q_mark;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class PlayerCont : MonoBehaviour
         shot_timer = 0;
         health = 100;
         invincibility_timer = 0;
-        idle_timer = 400;
+        q_mark.SetActive(false);
     }
 
     // Update is called once per frame
@@ -116,6 +117,42 @@ public class PlayerCont : MonoBehaviour
                 }
                 invincibility_timer-= Time.deltaTime;
             }
+            NPCFind();
+            if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance.talking)
+            {
+                DialogueManager.instance.ExitStory();
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Return) && !DialogueManager.instance.talking)
+                {
+                    if (npc)
+                    {
+                        DialogueManager.instance.PlayDialogue(npc.name);
+                    }
+                }
+            }
+            
+        }
+    }
+    void NPCFind()
+    {
+        float radius = 0.7f;
+        LayerMask npc_mask = LayerMask.GetMask("NPC");
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, npc_mask);
+        if (hitColliders.Length > 0)
+        {
+            if (hitColliders[0].gameObject != npc)
+            {
+                npc = hitColliders[0].gameObject;
+                q_mark.SetActive(true);
+                q_mark.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z);
+            }
+        }
+        else
+        {
+            npc = null;
+            q_mark.SetActive(false);
         }
     }
 
