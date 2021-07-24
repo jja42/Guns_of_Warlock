@@ -60,7 +60,8 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
             UI_Inventory.instance.Item_Tooltip.enabled = true;
             UI_Inventory.instance.Item_Tooltip.rectTransform.position = transform.position;
             UI_Inventory.instance.Item_Tooltip.rectTransform.position = new Vector3(UI_Inventory.instance.Item_Tooltip.rectTransform.position.x, UI_Inventory.instance.Item_Tooltip.rectTransform.position.y - 70,UI_Inventory.instance.Item_Tooltip.rectTransform.position.z);
-            UI_Inventory.instance.Item_Tooltip.text = item.description;
+            UI_Inventory.instance.Item_Tooltip.text = item.title + "\n";
+            UI_Inventory.instance.Item_Tooltip.text += item.description;
         }
     }
 

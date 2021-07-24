@@ -57,11 +57,11 @@ public class PlayerCont : MonoBehaviour
                 animator.SetBool("Running", true);
                 if (x > 0.01)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    render.flipX = false;
                 }
                 if (x < -0.01)
                 {
-                    transform.eulerAngles = new Vector3(0, 180, 0);
+                    render.flipX = true;
                 }
                 transform.position = new Vector3(transform.position.x + x * walkspeed * Time.deltaTime, transform.position.y, transform.position.z);
             }
@@ -87,15 +87,16 @@ public class PlayerCont : MonoBehaviour
                     audioSource.Stop();
                     audioSource.PlayOneShot(shoot);
                     GameObject shot = Instantiate(Fireball);
-                    shot.transform.eulerAngles = transform.eulerAngles;
+                    SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
                     Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
-                    if (shot.transform.eulerAngles.y == 0)
+                    if (!render.flipX)
                     {
                         shot_rigid.AddForce(new Vector2(500, 0));
                         shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y, -.1f);
                     }
-                    if (shot.transform.eulerAngles.y == 180)
+                    else
                     {
+                        renderer.flipX = true;
                         shot_rigid.AddForce(new Vector2(-500, 0));
                         shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
                     }
