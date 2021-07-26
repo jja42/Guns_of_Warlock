@@ -24,11 +24,6 @@ public class Game_Manager : MonoBehaviour
         {
             paused = !paused;
         }
-        money_text.text = "Money: " + money.ToString();
-    }
-
-    public void GivePlayerItem(string itenName)
-    {
-
+        money_text.text = money.ToString();
     }
 }

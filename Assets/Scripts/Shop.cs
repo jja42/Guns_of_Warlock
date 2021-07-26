@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    public static Shop instance;
     public List<UI_Item> UI_Items = new List<UI_Item>();
     public GameObject slotPrefab;
     public Transform slotPanel;
@@ -13,16 +14,18 @@ public class Shop : MonoBehaviour
     public GameObject ShopUI;
     private void Awake()
     {
+        instance = this;
         for (int i = 0; i < numberOfSlots; i++)
         {
-            GameObject instance = Instantiate(slotPrefab);
-            instance.transform.SetParent(slotPanel);
-            UI_Items.Add(instance.GetComponentInChildren<UI_Item>());
+            GameObject obj = Instantiate(slotPrefab);
+            obj.transform.SetParent(slotPanel);
+            UI_Items.Add(obj.GetComponentInChildren<UI_Item>());
         }
     }
     private void Start()
     {
         GiveItem("Invisibility Potion");
+        GiveItem("Small Health Potion");
     }
     public void GiveItem(string itemName)
     {

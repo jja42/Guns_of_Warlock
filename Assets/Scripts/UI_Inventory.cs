@@ -15,6 +15,7 @@ public class UI_Inventory : MonoBehaviour
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(slotPanel);
             UI_Items.Add(instance.GetComponentInChildren<UI_Item>());
+            UI_Items[i].index = i;
         }
     }
     public void UpdateSlot(int slot, Item item)
@@ -28,5 +29,9 @@ public class UI_Inventory : MonoBehaviour
     public void RemoveItem(Item item)
     {
         UpdateSlot(UI_Items.FindIndex(i => i == null || i.item == item), null);
+    }
+    public void RemoveItem(int index)
+    {
+        UpdateSlot(index, null);
     }
 }

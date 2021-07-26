@@ -19,9 +19,10 @@ public class ItemDatabase : MonoBehaviour
     void BuildDatabase()
     {
         items = new List<Item>() {
-            new Item(0, "Gun", "A warlock's best friend and a powerful magical conduit.",0,0),
-            new Item(1, "Fireball", "Your standard spell. Comes out quick, does some damage.",0,0),
-            new Item(2,"Invisibility Potion","Don't do nothing pervy with it.",100,1)
+            new Item(0, "Gun", "A warlock's best friend and a powerful magical conduit.",0,0,1,1),
+            new Item(1, "Fireball", "Your standard spell. Comes out quick, does some damage.",0,0,1,1),
+            new Item(2,"Invisibility Potion","Don't do nothing pervy with it.",100,1,1,2),
+            new Item(3, "Small Health Potion","Restores one Heart. Does ya good.",10,1,0,2)
         };
     }
 }

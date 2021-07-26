@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     public List<Item> characterItems = new List<Item>();
     public UI_Inventory inventoryUI;
     bool init;
+    AudioSource audioSource;
+    public AudioClip trade_sfx;
     private void Awake()
     {
         instance = this;
@@ -16,6 +18,7 @@ public class Inventory : MonoBehaviour
     {
         inventoryUI.gameObject.SetActive(false);
         init = false;
+        audioSource = GetComponent<AudioSource>();
     }
     public void Update()
     {
@@ -34,15 +37,34 @@ public class Inventory : MonoBehaviour
     {
         Item itemToAdd = new Item(ItemDatabase.instance.GetItem(itemName));
         itemToAdd.owner = 0;
+        itemToAdd.count = 1;
         characterItems.Add(itemToAdd);
         bool state = inventoryUI.gameObject.activeSelf;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.AddNewItem(itemToAdd);
         inventoryUI.gameObject.SetActive(state);
     }
+    public void StackItem(string itemName)
+    {
+        Item item = characterItems.Find(item => item.name == itemName && item.count < item.max_count);
+        item.count++;
+    }
     public Item CheckForItem(string itemName)
     {
         return characterItems.Find(item => item.name == itemName);
+    }
+    public Item CheckStackable(string itemName)
+    {
+        return characterItems.Find(item => item.name == itemName && item.count < item.max_count);
+    }
+    public void RemoveItem(string itemName, int index)
+    {
+        Item item = CheckForItem(itemName);
+        if (item != null)
+        {
+            characterItems.Remove(item);
+            inventoryUI.RemoveItem(index);
+        }
     }
     public void RemoveItem(string itemName)
     {
@@ -52,5 +74,9 @@ public class Inventory : MonoBehaviour
             characterItems.Remove(item);
             inventoryUI.RemoveItem(item);
         }
+    }
+    public void TradeSound()
+    {
+        audioSource.PlayOneShot(trade_sfx);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, IPointerClickHandler
 {
     public Item item;
+    public int index;
     private Image spriteImage;
     Text Item_Tooltip;
     //private UI_Item selectedItem;
@@ -43,7 +44,19 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                 if (Game_Manager.instance.money >= item.cost)
                 {
                     Game_Manager.instance.money -= item.cost;
-                    Inventory.instance.GiveItem(item.name);
+                    if (Inventory.instance.CheckStackable(item.name) != null)
+                    {
+                        Inventory.instance.StackItem(item.name);
+                    }
+                    else
+                    {
+                        Inventory.instance.GiveItem(item.name);
+                    }
+                    if (item.count == 1)
+                    {
+                        Shop.instance.RemoveItem(item);
+                    }
+                    Inventory.instance.TradeSound();
                 }
             }
             else
@@ -51,7 +64,8 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                 if (Game_Manager.instance.shopping && item.cost > 0)
                 {
                     Game_Manager.instance.money += item.cost / 2;
-                    Inventory.instance.RemoveItem(item.name);
+                    Inventory.instance.RemoveItem(item.name,index);
+                    Inventory.instance.TradeSound();
                 }
             }
         }
@@ -63,7 +77,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
         {
             Item_Tooltip.enabled = true;
             Item_Tooltip.rectTransform.position = transform.position;
-            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 70,Item_Tooltip.rectTransform.position.z);
+            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 100,Item_Tooltip.rectTransform.position.z);
             Item_Tooltip.text = item.name + "\n";
             Item_Tooltip.text += item.description;
             if(item.cost > 0)
