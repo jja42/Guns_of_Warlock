@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
+public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, IPointerClickHandler
 {
     public Item item;
     private Image spriteImage;
+    Text Item_Tooltip;
     //private UI_Item selectedItem;
     private void Awake()
     {
@@ -15,7 +16,10 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
         UpdateItem(null);
         //selectedItem = GameObject.Find("SelectedItem").GetComponent<UI_Item>();
     }
-
+    private void Start()
+    {
+        Item_Tooltip = Game_Manager.instance.Item_Tooltip;   
+    }
     public void UpdateItem(Item Item)
     {
         item = Item;
@@ -30,43 +34,54 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
         }
     }
 
-    /*public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (item != null)
         {
-            if (selectedItem.item != null)
+            if (item.owner == 1)
             {
-                Item clone = new Item(selectedItem.item);
-                selectedItem.UpdateItem(item);
-                UpdateItem(clone);
+                if (Game_Manager.instance.money >= item.cost)
+                {
+                    Game_Manager.instance.money -= item.cost;
+                    Inventory.instance.GiveItem(item.name);
+                }
             }
             else
             {
-                selectedItem.UpdateItem(item);
-                UpdateItem(null);
+                if (Game_Manager.instance.shopping && item.cost > 0)
+                {
+                    Game_Manager.instance.money += item.cost / 2;
+                    Inventory.instance.RemoveItem(item.name);
+                }
             }
         }
-        else if (selectedItem.item != null)
-        {
-            UpdateItem(selectedItem.item);
-            selectedItem.UpdateItem(null);
-        }
-    }*/
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
         {
-            UI_Inventory.instance.Item_Tooltip.enabled = true;
-            UI_Inventory.instance.Item_Tooltip.rectTransform.position = transform.position;
-            UI_Inventory.instance.Item_Tooltip.rectTransform.position = new Vector3(UI_Inventory.instance.Item_Tooltip.rectTransform.position.x, UI_Inventory.instance.Item_Tooltip.rectTransform.position.y - 70,UI_Inventory.instance.Item_Tooltip.rectTransform.position.z);
-            UI_Inventory.instance.Item_Tooltip.text = item.title + "\n";
-            UI_Inventory.instance.Item_Tooltip.text += item.description;
+            Item_Tooltip.enabled = true;
+            Item_Tooltip.rectTransform.position = transform.position;
+            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 70,Item_Tooltip.rectTransform.position.z);
+            Item_Tooltip.text = item.name + "\n";
+            Item_Tooltip.text += item.description;
+            if(item.cost > 0)
+            {
+                if (item.owner == 1)
+                {
+                    Item_Tooltip.text += "\n Cost: " + item.cost;
+                }
+                else
+                {
+                    Item_Tooltip.text += "\n Value: " + item.cost/2;
+                }
+            }
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UI_Inventory.instance.Item_Tooltip.enabled = false;
+        Item_Tooltip.enabled = false;
     }
 }

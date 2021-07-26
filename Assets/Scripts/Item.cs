@@ -5,21 +5,27 @@ using UnityEngine;
 public class Item
 {
     public int id;
-    public string title;
+    public string name;
     public string description;
     public Sprite icon;
-    public Item(int item_id, string item_title, string item_description)
+    public int cost;
+    public int owner;
+    public Item(int item_id, string item_name, string item_description, int item_cost, int item_owner)
     {
         id = item_id;
-        title = item_title;
+        name = item_name;
         description = item_description;
-        icon = Resources.Load<Sprite>("Items/" + title);
+        icon = Resources.Load<Sprite>("Items/" + name);
+        cost = item_cost;
+        owner = item_owner;
     }
     public Item(Item item)
     {
         id = item.id;
-        title = item.title;
+        name = item.name;
         description = item.description;
-        icon = Resources.Load<Sprite>("Items/" + item.title);
+        icon = Resources.Load<Sprite>("Items/" + item.name);
+        cost = item.cost;
+        owner = item.owner;
     }
 }

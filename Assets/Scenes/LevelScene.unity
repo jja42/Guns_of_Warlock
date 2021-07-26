@@ -343,6 +343,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &658198657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658198658}
+  - component: {fileID: 658198660}
+  - component: {fileID: 658198659}
+  m_Layer: 5
+  m_Name: Money
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &658198658
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658198657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1236734218}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -150, y: -50}
+  m_SizeDelta: {x: 300, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &658198659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658198657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 6740a065f024bc94487ba511a35f9068, type: 3}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 48
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Money: 100
+
+'
+--- !u!222 &658198660
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658198657}
+  m_CullTransparentMesh: 1
 --- !u!1 &1010803463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1166503232
 MonoBehaviour:
@@ -1637,6 +1718,7 @@ RectTransform:
   - {fileID: 1677944156}
   - {fileID: 1632932765}
   - {fileID: 229783309}
+  - {fileID: 658198658}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1901,7 +1983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1677944156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1998,7 +2080,6 @@ MonoBehaviour:
   UI_Items: []
   slotPrefab: {fileID: 4366897679557742103, guid: 2a90eedfffcf4a34494cd96bc5bb7e4f, type: 3}
   slotPanel: {fileID: 1677944156}
-  Item_Tooltip: {fileID: 229783310}
   numberOfSlots: 8
 --- !u!1 &1888938483
 GameObject:
@@ -2032,6 +2113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  Item_Tooltip: {fileID: 229783310}
+  money_text: {fileID: 658198659}
+  money: 0
+  shopping: 0
 --- !u!4 &1888938485
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1888938487
 MonoBehaviour:
@@ -2058,7 +2143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12ad5dff6100ad4eb94407f596948a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 1888938488}
   inventoryUI: {fileID: 1677944160}
 --- !u!114 &1888938488
 MonoBehaviour:
@@ -2224,7 +2308,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1542352010776144164, guid: 76249e8b6d1f04e46ac43ccc9cd5a31e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1542352010776144164, guid: 76249e8b6d1f04e46ac43ccc9cd5a31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2293,7 +2377,7 @@ PrefabInstance:
       objectReference: {fileID: 1540347709}
     - target: {fileID: 795060136355010046, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 795060136355010046, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.x

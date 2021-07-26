@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager instance;
     public bool paused = false;
+    public Text Item_Tooltip;
+    public Text money_text;
+    public int money;
+    public bool shopping;
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,5 +24,11 @@ public class Game_Manager : MonoBehaviour
         {
             paused = !paused;
         }
+        money_text.text = "Money: " + money.ToString();
+    }
+
+    public void GivePlayerItem(string itenName)
+    {
+
     }
 }

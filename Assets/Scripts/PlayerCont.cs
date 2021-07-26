@@ -37,7 +37,7 @@ public class PlayerCont : MonoBehaviour
         grounded = false;
         animator = GetComponent<Animator>();
         shot_timer = 0;
-        health = 100;
+        health = 3;
         invincibility_timer = 0;
         q_mark.SetActive(false);
     }
@@ -129,7 +129,16 @@ public class PlayerCont : MonoBehaviour
                 {
                     if (npc)
                     {
-                        DialogueManager.instance.PlayDialogue(npc.name);
+                        if (npc.name.Equals("ShopKeeper"))
+                        {
+                            Shop shop = npc.GetComponent<Shop>();
+                            shop.ToggleShop();
+                            Game_Manager.instance.shopping = !Game_Manager.instance.shopping;
+                        }
+                        else
+                        {
+                            DialogueManager.instance.PlayDialogue(npc.name);
+                        }
                     }
                 }
             }

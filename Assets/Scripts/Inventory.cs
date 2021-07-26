@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory instance;
     public List<Item> characterItems = new List<Item>();
-    public ItemDatabase itemDatabase;
     public UI_Inventory inventoryUI;
     bool init;
+    private void Awake()
+    {
+        instance = this;
+    }
     public void Start()
     {
         inventoryUI.gameObject.SetActive(false);
@@ -28,15 +32,17 @@ public class Inventory : MonoBehaviour
     }
     public void GiveItem(string itemName)
     {
-        Item itemToAdd = itemDatabase.GetItem(itemName);
+        Item itemToAdd = new Item(ItemDatabase.instance.GetItem(itemName));
+        itemToAdd.owner = 0;
         characterItems.Add(itemToAdd);
+        bool state = inventoryUI.gameObject.activeSelf;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.AddNewItem(itemToAdd);
-        inventoryUI.gameObject.SetActive(false);
+        inventoryUI.gameObject.SetActive(state);
     }
     public Item CheckForItem(string itemName)
     {
-        return characterItems.Find(item => item.title == itemName);
+        return characterItems.Find(item => item.name == itemName);
     }
     public void RemoveItem(string itemName)
     {
