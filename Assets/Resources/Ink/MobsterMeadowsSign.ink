@@ -1,0 +1,1 @@
+Keep going for Mobster Meadows, but beware of mobsters and other meadow inhabitants. Keep going for Mt. Koo-chee.
