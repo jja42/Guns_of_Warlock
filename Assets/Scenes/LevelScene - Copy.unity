@@ -296,7 +296,7 @@ SpriteRenderer:
   m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &456831214
@@ -1158,7 +1158,7 @@ SpriteRenderer:
   m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1115406022
@@ -1541,12 +1541,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1f75604a7e8a754a838f12878114166, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ef57a11286cc1645a7e2b072c73b3c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1701,6 +1701,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  Item_Tooltip: {fileID: 0}
+  money_text: {fileID: 0}
+  money: 0
+  shopping: 0
 --- !u!4 &1888938485
 Transform:
   m_ObjectHideFlags: 0
@@ -1727,8 +1731,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12ad5dff6100ad4eb94407f596948a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 1888938488}
   inventoryUI: {fileID: 0}
+  trade_sfx: {fileID: 0}
 --- !u!114 &1888938488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,7 +1799,6 @@ MonoBehaviour:
   UI_Items: []
   slotPrefab: {fileID: 4366897679557742103, guid: 2a90eedfffcf4a34494cd96bc5bb7e4f, type: 3}
   slotPanel: {fileID: 1896554400}
-  Item_Tooltip: {fileID: 0}
   numberOfSlots: 8
 --- !u!114 &1896554402
 MonoBehaviour:
