@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     public Text textPrefab;
     public Button buttonPrefab;
     public bool talking = false;
+    public bool more_dialogue = false;
     // Start is called before the first frame update
     public void PlayDialogue(string name)
     {
@@ -65,6 +66,7 @@ public class DialogueManager : MonoBehaviour
         }
         if (story.currentChoices.Count == 0)
         {
+            more_dialogue = false;
             Button choiceButton = Instantiate(buttonPrefab) as Button;
             choiceButton.transform.SetParent(this.transform, false);
             Text choiceText = choiceButton.GetComponentInChildren<Text>();
@@ -73,6 +75,10 @@ public class DialogueManager : MonoBehaviour
             {
                 ExitStory();
             });
+        }
+        else
+        {
+            more_dialogue = true;
         }
     }
     public void ExitStory()
@@ -114,5 +120,11 @@ public class DialogueManager : MonoBehaviour
             text = story.ContinueMaximally();
         }
         return text;
+    }
+
+    public void ContinueStory()
+    {
+        story.ChooseChoiceIndex(0);
+        refreshUI();
     }
 }

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+﻿{"inkVersion":19,"root":[["^I am the Shopkeeper, Keeper of the Shop. Come and look at my wares.","\n","ev","str","^Next","/str","/ev",{"*":"0.c-0","flg":4},{"c-0":["\n",{"->":"more"},{"->":"0.g-0"},{"#f":5}],"g-0":["done",{"#f":5}]}],"done",{"more":["^This is more dialouge. Behold!","\n","end",{"#f":1}],"#f":1}],"listDefs":{}}
+=======
 ﻿{"inkVersion":19,"root":[["^Damn varmints. Anyway, I am the Shopkeeper, Keeper of the Shop. Come and look at my wares.","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+>>>>>>> 896bf759329dddfb65593911b5d2aa80bcbcde29
