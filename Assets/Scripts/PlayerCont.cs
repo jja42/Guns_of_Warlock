@@ -129,7 +129,14 @@ public class PlayerCont : MonoBehaviour
             NPCFind();
             if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance.talking)
             {
-                DialogueManager.instance.ExitStory();
+                if (DialogueManager.instance.more_dialogue)
+                {
+                    DialogueManager.instance.ContinueStory();
+                }
+                else
+                {
+                    DialogueManager.instance.ExitStory();
+                }
             }
             else
             {
