@@ -16,7 +16,6 @@ public class DialogueManager : MonoBehaviour
     public Text textPrefab;
     public Button buttonPrefab;
     public bool talking = false;
-    public Inventory inventory;
     // Start is called before the first frame update
     public void PlayDialogue(string name)
     {
@@ -32,7 +31,7 @@ public class DialogueManager : MonoBehaviour
         story.BindExternalFunction("check_item", (string item) =>
         {
 
-            if (inventory.CheckForItem(item) != null)
+            if (Inventory.instance.CheckForItem(item) != null)
             {
                 return 1;
             }
@@ -81,12 +80,12 @@ public class DialogueManager : MonoBehaviour
         if ((string)story.variablesState["giveitem"] != null)
         {
             string item = (string)story.variablesState["giveitem"];
-            inventory.GiveItem(item);
+            Inventory.instance.GiveItem(item);
         }
         if ((string)story.variablesState["removeitem"] != null)
         {
             string item = (string)story.variablesState["removeitem"];
-            inventory.RemoveItem(item);
+            Inventory.instance.RemoveItem(item);
         }
         talking = false;
         eraseUI();

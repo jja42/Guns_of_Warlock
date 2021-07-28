@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,6 @@ public class PlayerCont : MonoBehaviour
     private Animator animator;
     public GameObject Fireball;
     private float shot_timer;
-    public int health;
     public float invincibility_timer;
     public Slider health_bar;
     private SpriteRenderer render;
@@ -25,10 +25,12 @@ public class PlayerCont : MonoBehaviour
     public AudioClip shoot;
     public AudioClip hurt;
     private GameObject npc;
-    public GameObject q_mark;
-
+    GameObject q_mark;
+    GameObject coin;
     void Start()
     {
+        q_mark = GameObject.FindGameObjectWithTag("Question");
+        coin = GameObject.FindGameObjectWithTag("Coin");
         rigidbody2d = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         render = GetComponent<SpriteRenderer>();
@@ -37,9 +39,9 @@ public class PlayerCont : MonoBehaviour
         grounded = false;
         animator = GetComponent<Animator>();
         shot_timer = 0;
-        health = 3;
         invincibility_timer = 0;
         q_mark.SetActive(false);
+        coin.SetActive(false);
     }
 
     // Update is called once per frame
@@ -135,15 +137,22 @@ public class PlayerCont : MonoBehaviour
                 {
                     if (npc)
                     {
-                        if (npc.name.Equals("ShopKeeper"))
+                        if (npc.CompareTag("Shop"))
                         {
-                            Shop shop = npc.GetComponent<Shop>();
-                            shop.ToggleShop();
-                            Game_Manager.instance.shopping = !Game_Manager.instance.shopping;
+                            Game_Manager.instance.ToggleShop();
                         }
                         else
                         {
-                            DialogueManager.instance.PlayDialogue(npc.name);
+                            if (npc.CompareTag("Exit"))
+                            {
+                                string resultString = Regex.Match(npc.name, @"\d+").Value;
+                                int scene_num = int.Parse(resultString);
+                                Game_Manager.instance.LoadScene(scene_num);
+                            }
+                            else
+                            {
+                                DialogueManager.instance.PlayDialogue(npc.name);
+                            }
                         }
                     }
                 }
@@ -161,14 +170,28 @@ public class PlayerCont : MonoBehaviour
             if (hitColliders[0].gameObject != npc)
             {
                 npc = hitColliders[0].gameObject;
-                q_mark.SetActive(true);
-                q_mark.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z);
+                if (!(npc.CompareTag("Shop") || npc.CompareTag("Exit")))
+                {
+                    q_mark.SetActive(true);
+                    coin.SetActive(false);
+                    q_mark.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z);
+                }
+                else
+                {
+                    if (npc.CompareTag("Shop"))
+                    {
+                        coin.SetActive(true);
+                        q_mark.SetActive(false);
+                        coin.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z);
+                    }
+                }
             }
         }
         else
         {
             npc = null;
             q_mark.SetActive(false);
+            coin.SetActive(false);
         }
     }
 
@@ -199,10 +222,16 @@ public class PlayerCont : MonoBehaviour
             //Enemy enemy = (Enemy)collision.gameObject.GetComponent(typeof(Enemy));
             if (invincibility_timer <= 0)
             {
-                health -= 20;
+                Game_Manager.instance.player_health -= 1;
                 invincibility_timer = 1.2f;
                 audioSource.PlayOneShot(hurt);
             }
+        }
+        if (collision.gameObject.CompareTag("Exit") && collision.gameObject.layer != LayerMask.NameToLayer("NPC"))
+        {
+            string resultString = Regex.Match(collision.gameObject.name, @"\d+").Value;
+            int scene_num = int.Parse(resultString);
+            Game_Manager.instance.LoadScene(scene_num);
         }
     }
 }

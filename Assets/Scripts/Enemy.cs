@@ -26,6 +26,10 @@ public abstract class Enemy : MonoBehaviour
     protected bool idle;
     protected Vector3 targetpos;
     protected SpriteRenderer render;
+    public Material flashMaterial;
+    float flash_duration;
+    Material OG_Material;
+    bool flashing;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -46,6 +50,9 @@ public abstract class Enemy : MonoBehaviour
         death_timer = 20;
         start_pos = transform.position;
         idle = true;
+        OG_Material = render.material;
+        flash_duration = .25f;
+        flashing = false;
     }
 
     // Update is called once per frame
@@ -91,7 +98,16 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected abstract void TakeDamage();
+    protected void TakeDamage(int damage)
+    {
+        audioSource.PlayOneShot(impact);
+        health -= damage;
+        if (!flashing)
+        {
+            flashing = true;
+            StartCoroutine(Flash());
+        }
+    }
 
     protected bool DetectPlayer()
     {
@@ -158,10 +174,26 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            audioSource.PlayOneShot(impact);
-            health -= 50;
-            Destroy(collision.gameObject);
+            if (collision.gameObject.name.Contains("Fireball"))
+            {
+                TakeDamage(1);
+                Destroy(collision.gameObject);
+            }
         }
 
+    }
+    protected IEnumerator Flash()
+    {
+        // Swap to the flashMaterial.
+        render.material = flashMaterial;
+
+        // Pause the execution of this function for "duration" seconds.
+        yield return new WaitForSeconds(flash_duration);
+
+        // After the pause, swap back to the original material.
+        render.material = OG_Material;
+
+        // Set the routine to null, signaling that it's finished.
+        flashing = false;
     }
 }

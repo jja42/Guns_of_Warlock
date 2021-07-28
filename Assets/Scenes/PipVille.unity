@@ -2203,6 +2203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightLimit: 12
   leftLimit: -10
+  upwardLimit: 0
 --- !u!1 &1191689424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,6 +2452,7 @@ GameObject:
   - component: {fileID: 1236734217}
   - component: {fileID: 1236734216}
   - component: {fileID: 1236734215}
+  - component: {fileID: 1236734219}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2542,6 +2544,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1236734219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236734214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a96e536be191d4aabe141e02baffb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item_Tooltip: {fileID: 229783310}
+  money_text: {fileID: 658198659}
 --- !u!1 &1540347709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,11 +2570,11 @@ GameObject:
   - component: {fileID: 1540347710}
   m_Layer: 0
   m_Name: Question
-  m_TagString: Untagged
+  m_TagString: Question
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1540347710
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2860,7 +2876,6 @@ MonoBehaviour:
   textPrefab: {fileID: 6846805020116119630, guid: f6417263448558641972655d32fd127a, type: 3}
   buttonPrefab: {fileID: 8744426483535540228, guid: 4cecc1340ae602e44ab40f84faa2f006, type: 3}
   talking: 0
-  inventory: {fileID: 1888938487}
 --- !u!1 &1677944155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2978,17 +2993,6 @@ MonoBehaviour:
   slotPrefab: {fileID: 4366897679557742103, guid: 2a90eedfffcf4a34494cd96bc5bb7e4f, type: 3}
   slotPanel: {fileID: 1677944156}
   numberOfSlots: 8
---- !u!114 &1888938487 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4430935166654665663, guid: 115999190b06c76428643497e76393a5, type: 3}
-  m_PrefabInstance: {fileID: 4430935165856528968}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12ad5dff6100ad4eb94407f596948a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2037396764
 GameObject:
   m_ObjectHideFlags: 0

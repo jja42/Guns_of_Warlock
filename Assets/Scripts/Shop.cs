@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public static Shop instance;
     public List<UI_Item> UI_Items = new List<UI_Item>();
     public GameObject slotPrefab;
     public Transform slotPanel;
@@ -14,7 +13,6 @@ public class Shop : MonoBehaviour
     public GameObject ShopUI;
     private void Awake()
     {
-        instance = this;
         for (int i = 0; i < numberOfSlots; i++)
         {
             GameObject obj = Instantiate(slotPrefab);

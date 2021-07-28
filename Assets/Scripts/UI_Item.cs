@@ -15,12 +15,10 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
     {
         spriteImage = GetComponent<Image>();
         UpdateItem(null);
+        Item_Tooltip = UI_Manager.instance.Item_Tooltip;
         //selectedItem = GameObject.Find("SelectedItem").GetComponent<UI_Item>();
     }
-    private void Start()
-    {
-        Item_Tooltip = Game_Manager.instance.Item_Tooltip;   
-    }
+
     public void UpdateItem(Item Item)
     {
         item = Item;
@@ -46,7 +44,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                     Game_Manager.instance.money -= item.cost;
                     if (Inventory.instance.CheckStackable(item.name) != null)
                     {
-                        Inventory.instance.StackItem(item.name);
+                        int count = Inventory.instance.StackItem(item.name);
                     }
                     else
                     {
@@ -54,7 +52,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                     }
                     if (item.count == 1)
                     {
-                        Shop.instance.RemoveItem(item);
+                        Game_Manager.instance.RemoveShopItem(item);
                     }
                     Inventory.instance.TradeSound();
                 }
@@ -78,19 +76,20 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
             Item_Tooltip.enabled = true;
             Item_Tooltip.rectTransform.position = transform.position;
             Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 100,Item_Tooltip.rectTransform.position.z);
-            Item_Tooltip.text = item.name + "\n";
-            Item_Tooltip.text += item.description;
-            if(item.cost > 0)
+            Item_Tooltip.text = item.name + " ";
+            if (item.cost > 0 && Game_Manager.instance.shopping)
             {
                 if (item.owner == 1)
                 {
-                    Item_Tooltip.text += "\n Cost: " + item.cost;
+                    Item_Tooltip.text += "(" + item.cost + "g)";
                 }
                 else
                 {
-                    Item_Tooltip.text += "\n Value: " + item.cost/2;
+                    Item_Tooltip.text += "(" + item.cost / 2 + "g)";
                 }
             }
+            Item_Tooltip.text += "\n";
+            Item_Tooltip.text += item.description;
         }
     }
 

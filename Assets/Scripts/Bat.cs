@@ -6,17 +6,11 @@ public class Bat : Enemy
 {
     protected override void Start()
     {
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        audioSource = GetComponent<AudioSource>();
-        render = GetComponent<SpriteRenderer>();
-        health = 50;
+        base.Start();
+        health = 3;
         movetimer_og = 1;
         movetimer = .1f;
-        moveforce = new Vector2(0f, 0f);
         movespeed = 3.0f;
-        player_layer = LayerMask.GetMask("Player");
-        ground_layer = LayerMask.GetMask("Ground");
         if (transform.eulerAngles.y == 180)
         {
             flip = true;
@@ -26,8 +20,6 @@ public class Bat : Enemy
             flip = false;
         }
         death_timer = .25f;
-        start_pos = transform.position;
-        idle = true;
     }
     protected override void Update()
     {
@@ -82,11 +74,6 @@ public class Bat : Enemy
     protected override void Idle()
     {
         return;
-    }
-
-    protected override void TakeDamage()
-    {
-        throw new System.NotImplementedException();
     }
 
     protected override void Wander()

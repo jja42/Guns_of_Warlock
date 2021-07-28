@@ -10,9 +10,17 @@ public class Inventory : MonoBehaviour
     bool init;
     AudioSource audioSource;
     public AudioClip trade_sfx;
-    private void Awake()
+    void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this);
     }
     public void Start()
     {
@@ -44,10 +52,11 @@ public class Inventory : MonoBehaviour
         inventoryUI.AddNewItem(itemToAdd);
         inventoryUI.gameObject.SetActive(state);
     }
-    public void StackItem(string itemName)
+    public int StackItem(string itemName)
     {
         Item item = characterItems.Find(item => item.name == itemName && item.count < item.max_count);
         item.count++;
+        return item.count;
     }
     public Item CheckForItem(string itemName)
     {
