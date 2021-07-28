@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     public float rightLimit;
     public float leftLimit;
+    public float upwardLimit; //should be 0 by default
     GameObject player;
 
     void Start() {
@@ -21,5 +22,11 @@ public class CameraController : MonoBehaviour {
             transform.position = cameraPos;
         }
 
+        if (playerPos.y > upwardLimit) {
+
+            cameraPos.y = playerPos.y;
+            transform.position = cameraPos;
+
+        }
     }
 }

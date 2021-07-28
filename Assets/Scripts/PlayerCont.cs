@@ -78,6 +78,12 @@ public class PlayerCont : MonoBehaviour
                 rigidbody2d.AddForce(jumpforce);
             }
 
+            if (rigidbody2d.velocity.y < 0) { //if falling, fall faster
+
+                rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
+
+            }
+
             //Shooting
             if (shot_timer <= 0)
             {
