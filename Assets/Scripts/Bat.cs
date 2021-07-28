@@ -7,6 +7,7 @@ public class Bat : Enemy
     protected override void Start()
     {
         base.Start();
+        
         health = 3;
         movetimer_og = 1;
         movetimer = .1f;
