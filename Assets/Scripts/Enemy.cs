@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField]
     protected int health;
     public float movetimer;
     protected float movetimer_og;
