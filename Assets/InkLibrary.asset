@@ -42,13 +42,13 @@ MonoBehaviour:
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 624f9f9fac9eb6f408bee2a7f5469637, type: 3}
   - compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: bddd1b91a3dee1e4d98977e2cfbdacc6, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 4900000, guid: 0747a82b54759b44cbeda43dcafe8346, type: 3}
-  - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: f4af19223b056424a9dbe226b9aa32fc, type: 3}
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 09c8bf6101381ab4a879467f761ba320, type: 3}
+  - compileAutomatically: 0
+    inkAsset: {fileID: 102900000, guid: bddd1b91a3dee1e4d98977e2cfbdacc6, type: 3}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 0}
   - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: 863645cd52c2a0746a3acd89b00d34de, type: 3}
     jsonAssetDirectory: {fileID: 0}
