@@ -134,7 +134,17 @@ MonoBehaviour:
   health_bar: {fileID: 0}
   jump: {fileID: 8300000, guid: 31ff1b21dbeaf8f4eb29766ccd81cf0a, type: 3}
   shoot: {fileID: 8300000, guid: 0ee8704926d9c6c4a97a0f86b8626b61, type: 3}
-  hurt: {fileID: 0}
+  hurt:
+  - {fileID: 8300000, guid: f6c550cb0e261fe4bb610dde83ca973a, type: 3}
+  - {fileID: 8300000, guid: 0030fe00f63c9b34abd03ab19361baef, type: 3}
+  - {fileID: 8300000, guid: 682844ebd61e5fd4daf0b5687582572a, type: 3}
+  - {fileID: 8300000, guid: 54e6653fa5d483c428e3ae899dcd86ca, type: 3}
+  - {fileID: 8300000, guid: 5bea9e3cfca01c94bb2379b80d658425, type: 3}
+  - {fileID: 8300000, guid: be7aa6e6abc3139498da6c11d3fbf50b, type: 3}
+  - {fileID: 8300000, guid: 6634a6c67afee9d40912b0823040b844, type: 3}
+  - {fileID: 8300000, guid: 9e59e076345707b40bbff262418a1e3c, type: 3}
+  - {fileID: 8300000, guid: 8c889e01265f1d64aa94df765fef75c8, type: 3}
+  - {fileID: 8300000, guid: b4413ac91dce8a745979f2df40627486, type: 3}
   q_mark: {fileID: 77202856961869185, guid: 4b121478b21918248a41f7f6f7273424, type: 3}
   coin: {fileID: 5722489286697894595, guid: 0244c10f9cefd784e8995f4010b5ed99, type: 3}
 --- !u!95 &795060136355010034

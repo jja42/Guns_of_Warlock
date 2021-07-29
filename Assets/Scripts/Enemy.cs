@@ -20,7 +20,6 @@ public abstract class Enemy : MonoBehaviour
     protected LayerMask player_layer;
     protected bool grounded;
     protected LayerMask ground_layer;
-    protected bool flip;
     public float death_timer;
     protected AudioSource audioSource;
     public AudioClip impact;
@@ -49,7 +48,6 @@ public abstract class Enemy : MonoBehaviour
         movespeed = 2.0f;
         player_layer = LayerMask.GetMask("Player");
         ground_layer = LayerMask.GetMask("Ground");
-        flip = false;
         death_timer = 20;
         start_pos = transform.position;
         idle = true;
@@ -90,14 +88,12 @@ public abstract class Enemy : MonoBehaviour
                     if (movetimer <= 0)
                     {
                         idle = false;
-                        if (flip)
+                        if (render.flipX)
                         {
-                            transform.eulerAngles = new Vector3(0, 180, 0);
                             targetpos = new Vector3(transform.position.x - 5, transform.position.y);
                         }
                         else
                         {
-                            transform.eulerAngles = new Vector3(0, 0, 0);
                             targetpos = new Vector3(transform.position.x + 5, transform.position.y);
                         }
                         movetimer = movetimer_og;
@@ -131,7 +127,7 @@ public abstract class Enemy : MonoBehaviour
     {
         float extradist = 4.0f;
         RaycastHit2D raycastHit;
-        if (flip) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + extradist, player_layer);
+        if (render.flipX) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + extradist, player_layer);
         else
         {
             raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + extradist, player_layer);
@@ -148,8 +144,8 @@ public abstract class Enemy : MonoBehaviour
             Raycolor = Color.red;
 
         }
-        if (flip) Debug.DrawRay(boxCollider.bounds.center, Vector2.left * (boxCollider.bounds.extents.y + extradist), Raycolor);
-        if (!flip) Debug.DrawRay(boxCollider.bounds.center, Vector2.right * (boxCollider.bounds.extents.y + extradist), Raycolor);
+        if (render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.left * (boxCollider.bounds.extents.y + extradist), Raycolor);
+        if (!render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.right * (boxCollider.bounds.extents.y + extradist), Raycolor);
         return (raycastHit.collider != null);
     }
 

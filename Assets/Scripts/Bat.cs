@@ -11,14 +11,6 @@ public class Bat : Enemy
         movetimer_og = 1;
         movetimer = .1f;
         movespeed = 3.0f;
-        if (transform.eulerAngles.y == 180)
-        {
-            flip = true;
-        }
-        else
-        {
-            flip = false;
-        }
         death_timer = .25f;
     }
     protected override void Update()
@@ -41,14 +33,12 @@ public class Bat : Enemy
                     if (movetimer <= 0)
                     {
                         idle = false;
-                        if (flip)
+                        if (render.flipX)
                         {
-                            transform.eulerAngles = new Vector3(0, 180, 0);
                             targetpos = new Vector3(transform.position.x - 10, transform.position.y);
                         }
                         else
                         {
-                            transform.eulerAngles = new Vector3(0, 0, 0);
                             targetpos = new Vector3(transform.position.x + 10, transform.position.y);
                         }
                         movetimer = movetimer_og;
@@ -88,7 +78,7 @@ public class Bat : Enemy
         }
         if (Vector3.Distance(transform.position, targetpos) <= .1f)
         {
-            flip = !flip;
+            render.flipX = !render.flipX;
             idle = true;
         } 
     }
