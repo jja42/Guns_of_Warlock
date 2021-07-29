@@ -248,8 +248,14 @@ public class PlayerCont : MonoBehaviour
             int scene_num = int.Parse(resultString);
             Game_Manager.instance.LoadScene(scene_num);
         }
-        if (collision.gameObject.CompareTag("Platform")){
+        if (collision.gameObject.CompareTag("Platform"))
+        {
             transform.parent = collision.gameObject.transform;
+        }
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Game_Manager.instance.money += 10;
+            Destroy(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

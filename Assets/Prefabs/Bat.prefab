@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59141bca78bdce4f8e6ddc12a0802c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   movetimer: 0
   death_timer: 0
   impact: {fileID: 8300000, guid: 61fd3f6c9c4081a4cb1d7f74bedb950e, type: 3}
   flashMaterial: {fileID: 2100000, guid: 35df6f1b17e13bf4d953d106825ffb6f, type: 2}
+  coin: {fileID: 3985942845318096080, guid: c617135fba5d61a4a95a8e71d0767972, type: 3}
 --- !u!95 &1542352010776144163
 Animator:
   serializedVersion: 3
