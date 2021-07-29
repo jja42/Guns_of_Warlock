@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 3258453035972221352}
   right: {fileID: 7313352755821724845}
-  speed: 1.5
+  speed: 2
 --- !u!61 &992171082474295950
 BoxCollider2D:
   m_ObjectHideFlags: 0
