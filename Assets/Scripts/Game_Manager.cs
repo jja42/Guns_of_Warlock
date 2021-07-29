@@ -10,6 +10,7 @@ public class Game_Manager : MonoBehaviour
     public int money;
     public bool shopping;
     public int player_health;
+    int max_player_health;
     Shop shop;
     // Start is called before the first frame update
     void Awake()
@@ -31,6 +32,7 @@ public class Game_Manager : MonoBehaviour
             shop = FindObjectOfType<Shop>();
         }
         player_health = 3;
+        max_player_health = player_health;
     }
     // Update is called once per frame
     void Update()
@@ -40,6 +42,7 @@ public class Game_Manager : MonoBehaviour
             paused = !paused;
         }
         UI_Manager.instance.money_text.text = money.ToString();
+        UI_Manager.instance.health.fillAmount = (float)player_health / max_player_health;
     }
 
     public void LoadScene(int scene_index)

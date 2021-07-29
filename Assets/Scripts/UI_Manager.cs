@@ -8,6 +8,7 @@ public class UI_Manager : MonoBehaviour
     public static UI_Manager instance;
     public Text Item_Tooltip;
     public Text money_text;
+    public Image health;
     // Start is called before the first frame update
     private void Awake()
     {
