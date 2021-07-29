@@ -8,6 +8,7 @@ TagManager:
   - Exit
   - Shop
   - Coin
+  - Platform
   layers:
   - Default
   - TransparentFX
