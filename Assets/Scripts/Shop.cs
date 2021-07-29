@@ -8,7 +8,6 @@ public class Shop : MonoBehaviour
     public List<UI_Item> UI_Items = new List<UI_Item>();
     public GameObject slotPrefab;
     public Transform slotPanel;
-    public Text Item_Tooltip;
     public int numberOfSlots;
     public GameObject ShopUI;
     private void Awake()
