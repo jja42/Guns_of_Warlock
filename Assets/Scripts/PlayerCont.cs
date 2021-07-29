@@ -23,7 +23,7 @@ public class PlayerCont : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip jump;
     public AudioClip shoot;
-    public AudioClip hurt;
+    public AudioClip[] hurt = new AudioClip[10];
     private GameObject npc;
     public GameObject q_mark;
     public GameObject coin;
@@ -239,7 +239,8 @@ public class PlayerCont : MonoBehaviour
                 {
                     rigidbody2d.AddForce(Vector2.left * 200 + Vector2.up * 150);
                 }
-                audioSource.PlayOneShot(hurt);
+                int rand_index = Random.Range(0, 10);
+                audioSource.PlayOneShot(hurt[rand_index]);
             }
         }
         if (collision.gameObject.CompareTag("Exit") && collision.gameObject.layer != LayerMask.NameToLayer("NPC"))

@@ -23,14 +23,6 @@ public class SmallSwampMuffin : Enemy
         movetimer_og = 1;
         movetimer = .1f;
         movespeed = 2.0f;
-        if (transform.eulerAngles.y == 180)
-        {
-            flip = true;
-        }
-        else
-        {
-            flip = false;
-        }
         death_timer = .25f;
     }
 
@@ -47,9 +39,27 @@ public class SmallSwampMuffin : Enemy
         }
         if (Vector3.Distance(transform.position, targetpos) <= .1f)
         {
-            flip = !flip;
+            render.flipX = !render.flipX;
             idle = true;
         }
         player_spotted = DetectPlayer();
+    }
+    protected void Shoot()
+    {
+        GameObject shot = Instantiate(projectilePrefab);
+        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
+        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+        if (!render.flipX)
+        {
+            shot_rigid.AddForce(new Vector2(500, 0));
+            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y, -.1f);
+        }
+        else
+        {
+            renderer.flipX = true;
+            shot_rigid.AddForce(new Vector2(-500, 0));
+            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
+        }
+        Destroy(shot, 2);
     }
 }
