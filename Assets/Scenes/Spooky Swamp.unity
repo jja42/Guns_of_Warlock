@@ -16479,9 +16479,10 @@ MonoBehaviour:
   health: 0
   movetimer: 0
   death_timer: 0
-  impact: {fileID: 0}
-  flashMaterial: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  impact: {fileID: 8300000, guid: 61fd3f6c9c4081a4cb1d7f74bedb950e, type: 3}
+  flashMaterial: {fileID: 2100000, guid: 35df6f1b17e13bf4d953d106825ffb6f, type: 2}
+  coin: {fileID: 3985942845318096080, guid: c617135fba5d61a4a95a8e71d0767972, type: 3}
+  projectilePrefab: {fileID: 5270037998932698614, guid: 422d5b44fd02d5e4f94e938acef19344, type: 3}
 --- !u!58 &3247147848018273658
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -16505,6 +16506,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 992171082474295950, guid: e666cc0aabdeb024c8d7902a1bea15cb, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8861198
+      objectReference: {fileID: 0}
+    - target: {fileID: 992171082474295950, guid: e666cc0aabdeb024c8d7902a1bea15cb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00027820468
+      objectReference: {fileID: 0}
     - target: {fileID: 3681925341581385932, guid: e666cc0aabdeb024c8d7902a1bea15cb, type: 3}
       propertyPath: position_1
       value: 
