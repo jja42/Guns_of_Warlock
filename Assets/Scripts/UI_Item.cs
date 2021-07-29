@@ -58,7 +58,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                     {
                         Game_Manager.instance.RemoveShopItem(item);
                     }
-                    Inventory.instance.TradeSound();
+                    Inventory.instance.CoinSound();
                 }
             }
             else
@@ -67,7 +67,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                 {
                     Game_Manager.instance.money += item.cost / 2;
                     Inventory.instance.RemoveItem(item.name,index);
-                    Inventory.instance.TradeSound();
+                    Inventory.instance.CoinSound();
                 }
             }
         }
