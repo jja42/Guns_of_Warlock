@@ -759,9 +759,9 @@ GameObject:
   m_Component:
   - component: {fileID: 636733322}
   - component: {fileID: 636733321}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Scene1Transition
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1177,6 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Item_Tooltip: {fileID: 398897106}
   money_text: {fileID: 1117645742}
+  health: {fileID: 0}
 --- !u!1 &912803447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 912803448}
-  trade_sfx: {fileID: 8300000, guid: ca003969be566334d9f5dbc6ab41ae0e, type: 3}
+  coin_sfx: {fileID: 0}
 --- !u!114 &990904188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2058,6 +2059,7 @@ MonoBehaviour:
   textPrefab: {fileID: 6846805020116119630, guid: f6417263448558641972655d32fd127a, type: 3}
   buttonPrefab: {fileID: 8744426483535540228, guid: 4cecc1340ae602e44ab40f84faa2f006, type: 3}
   talking: 0
+  more_dialogue: 0
 --- !u!1 &1735890234
 GameObject:
   m_ObjectHideFlags: 0
