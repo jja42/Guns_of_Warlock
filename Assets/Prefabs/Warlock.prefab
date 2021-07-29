@@ -130,13 +130,13 @@ MonoBehaviour:
     m_Bits: 8
   grounded: 0
   Fireball: {fileID: 6805774430163475192, guid: dfc848459cf36e04289ca3541ef99b9b, type: 3}
-  health: 0
   invincibility_timer: 0
   health_bar: {fileID: 0}
   jump: {fileID: 8300000, guid: 31ff1b21dbeaf8f4eb29766ccd81cf0a, type: 3}
   shoot: {fileID: 8300000, guid: 0ee8704926d9c6c4a97a0f86b8626b61, type: 3}
   hurt: {fileID: 0}
-  q_mark: {fileID: 0}
+  q_mark: {fileID: 77202856961869185, guid: 4b121478b21918248a41f7f6f7273424, type: 3}
+  coin: {fileID: 5722489286697894595, guid: 0244c10f9cefd784e8995f4010b5ed99, type: 3}
 --- !u!95 &795060136355010034
 Animator:
   serializedVersion: 3

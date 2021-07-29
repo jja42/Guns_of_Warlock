@@ -20,7 +20,6 @@ public class MovingPlatform : MonoBehaviour
         position_1 = left.transform.position;
         position_2 = right.transform.position;
         distance = Vector3.Distance(position_1, position_2);
-        
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (!target_position)
         {
-            lerpval = (Time.time - moveTime) * speed / distance;  
+            lerpval = (Time.time - moveTime) * speed / distance;
             transform.position = Vector3.Lerp(position_1, position_2, lerpval);
         }
         if (target_position)

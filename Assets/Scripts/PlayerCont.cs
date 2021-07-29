@@ -25,12 +25,12 @@ public class PlayerCont : MonoBehaviour
     public AudioClip shoot;
     public AudioClip hurt;
     private GameObject npc;
-    GameObject q_mark;
-    GameObject coin;
+    public GameObject q_mark;
+    public GameObject coin;
     void Start()
     {
-        q_mark = GameObject.FindGameObjectWithTag("Question");
-        coin = GameObject.FindGameObjectWithTag("Coin");
+        q_mark = Instantiate(q_mark);
+        coin = Instantiate(coin);
         rigidbody2d = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         render = GetComponent<SpriteRenderer>();
@@ -231,6 +231,14 @@ public class PlayerCont : MonoBehaviour
             {
                 Game_Manager.instance.player_health -= 1;
                 invincibility_timer = 1.2f;
+                if (render.flipX)
+                {
+                    rigidbody2d.AddForce(Vector2.right * 200 + Vector2.up * 150);
+                }
+                else
+                {
+                    rigidbody2d.AddForce(Vector2.left * 200 + Vector2.up * 150);
+                }
                 audioSource.PlayOneShot(hurt);
             }
         }
@@ -239,6 +247,15 @@ public class PlayerCont : MonoBehaviour
             string resultString = Regex.Match(collision.gameObject.name, @"\d+").Value;
             int scene_num = int.Parse(resultString);
             Game_Manager.instance.LoadScene(scene_num);
+        }
+        if (collision.gameObject.CompareTag("Platform")){
+            transform.parent = collision.gameObject.transform;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform")){
+            transform.parent = null;
         }
     }
 }

@@ -79,7 +79,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
         {
             Item_Tooltip.enabled = true;
             Item_Tooltip.rectTransform.position = transform.position;
-            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 100,Item_Tooltip.rectTransform.position.z);
+            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 100);
             Item_Tooltip.text = item.name + " ";
             if (item.cost > 0 && Game_Manager.instance.shopping)
             {

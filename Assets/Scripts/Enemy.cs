@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
         rigidbod = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<SpriteRenderer>();
-        health = 100;
+        health = 3;
         movetimer_og = 200;
         movetimer = movetimer_og;
         moveforce = new Vector2(0f, 0f);
@@ -84,15 +84,29 @@ public abstract class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    if (movetimer == 0)
+                    if (movetimer <= 0)
                     {
-                        Wander();
+                        idle = false;
+                        if (flip)
+                        {
+                            transform.eulerAngles = new Vector3(0, 180, 0);
+                            targetpos = new Vector3(transform.position.x - 5, transform.position.y);
+                        }
+                        else
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 0);
+                            targetpos = new Vector3(transform.position.x + 5, transform.position.y);
+                        }
                         movetimer = movetimer_og;
+                    }
+                    if (idle)
+                    {
+                        movetimer -= Time.deltaTime;
+                        Idle();
                     }
                     else
                     {
-                        movetimer--;
-                        Idle();
+                        Wander();
                     }
                 }
             }
