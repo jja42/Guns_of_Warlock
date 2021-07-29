@@ -7,7 +7,12 @@ public class SmallSwampMuffin : Enemy
     public GameObject projectilePrefab;
     protected override void ChasePlayer()
     {
-        throw new System.NotImplementedException();
+        if(attack_timer <= 0)
+            Shoot();
+        else
+        {
+            attack_timer -= Time.deltaTime;
+        }
     }
 
     protected override void Idle()
@@ -24,6 +29,7 @@ public class SmallSwampMuffin : Enemy
         movetimer = .1f;
         movespeed = 2.0f;
         death_timer = .25f;
+        attack_timer = 1f;
     }
 
     // Update is called once per frame
@@ -61,5 +67,7 @@ public class SmallSwampMuffin : Enemy
             shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
         }
         Destroy(shot, 2);
+        attack_timer = 1f;
+        player_spotted = DetectPlayer();
     }
 }

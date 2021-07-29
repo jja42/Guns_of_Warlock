@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public UI_Inventory inventoryUI;
     bool init;
     AudioSource audioSource;
-    public AudioClip trade_sfx;
+    public AudioClip coin_sfx;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -84,8 +84,8 @@ public class Inventory : MonoBehaviour
             inventoryUI.RemoveItem(item);
         }
     }
-    public void TradeSound()
+    public void CoinSound()
     {
-        audioSource.PlayOneShot(trade_sfx);
+        audioSource.PlayOneShot(coin_sfx);
     }
 }

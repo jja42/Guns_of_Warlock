@@ -256,6 +256,7 @@ public class PlayerCont : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Game_Manager.instance.money += 10;
+            Inventory.instance.CoinSound();
             Destroy(collision.gameObject);
         }
     }

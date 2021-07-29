@@ -16936,6 +16936,10 @@ PrefabInstance:
       value: Warlock
       objectReference: {fileID: 0}
     - target: {fileID: 795060136355010035, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 795060136355010035, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -17255,10 +17259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f271e46a69bbe458e253bfd41c711b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  attack_timer: 0
   movetimer: 0
   death_timer: 0
-  impact: {fileID: 8300000, guid: 61fd3f6c9c4081a4cb1d7f74bedb950e, type: 3}
+  impact: {fileID: 8300000, guid: 8c38973529eda234995d94d8c593f9b1, type: 3}
   flashMaterial: {fileID: 2100000, guid: 35df6f1b17e13bf4d953d106825ffb6f, type: 2}
   coin: {fileID: 3985942845318096080, guid: c617135fba5d61a4a95a8e71d0767972, type: 3}
   projectilePrefab: {fileID: 5270037998932698614, guid: 422d5b44fd02d5e4f94e938acef19344, type: 3}
