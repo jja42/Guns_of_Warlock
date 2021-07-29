@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 3681925341581385938, guid: e666cc0aabdeb024c8d7902a1bea15cb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3681925341581385939, guid: e666cc0aabdeb024c8d7902a1bea15cb, type: 3}
       propertyPath: m_RootOrder
       value: 1
