@@ -23,6 +23,7 @@ public class PlayerCont : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip jump;
     public AudioClip shoot;
+    public AudioClip coin_collect;
     public AudioClip[] hurt = new AudioClip[10];
     private GameObject npc;
     public GameObject q_mark;
@@ -256,7 +257,7 @@ public class PlayerCont : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Game_Manager.instance.money += 10;
-            Inventory.instance.CoinSound();
+            audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
         }
     }
