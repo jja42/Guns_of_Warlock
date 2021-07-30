@@ -29,6 +29,7 @@ public class PlayerCont : MonoBehaviour
     private GameObject npc;
     public GameObject q_mark;
     public GameObject coin;
+    Vector3 startpos;
     void Start()
     {
         q_mark = Instantiate(q_mark);
@@ -44,6 +45,7 @@ public class PlayerCont : MonoBehaviour
         q_mark.SetActive(false);
         coin.SetActive(false);
         db_jump = true;
+        startpos = transform.position;
     }
 
     // Update is called once per frame
@@ -51,6 +53,12 @@ public class PlayerCont : MonoBehaviour
     {
         if (!Game_Manager.instance.paused)
         {
+            if(Game_Manager.instance.player_health <= 0)
+            {
+                Game_Manager.instance.player_health = 3;
+                Game_Manager.instance.player_lives -= 1;
+                Respawn();
+            }
             //health_bar.value = health;
             x = Input.GetAxis("Horizontal");
             y = Input.GetAxis("Vertical");
@@ -243,10 +251,13 @@ public class PlayerCont : MonoBehaviour
             //Enemy enemy = (Enemy)collision.gameObject.GetComponent(typeof(Enemy));
             if (invincibility_timer <= 0)
             {
+                int rand_index = Random.Range(0, 10);
+                audioSource.PlayOneShot(hurt[rand_index]);
                 if (collision.gameObject.CompareTag("Spikes"))
                 {
                     Game_Manager.instance.player_lives -= 1;
                     Respawn();
+                    return;
                 }
                 else
                 {
@@ -261,8 +272,6 @@ public class PlayerCont : MonoBehaviour
                 {
                     rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x - 4, 3);
                 }
-                int rand_index = Random.Range(0, 10);
-                audioSource.PlayOneShot(hurt[rand_index]);
             }
         }
         if (collision.gameObject.CompareTag("Exit") && collision.gameObject.layer != LayerMask.NameToLayer("NPC"))
@@ -313,6 +322,7 @@ public class PlayerCont : MonoBehaviour
 
     void Respawn()
     {
-
+        rigidbody2d.velocity = Vector2.zero;
+        transform.position = startpos;
     }
 }

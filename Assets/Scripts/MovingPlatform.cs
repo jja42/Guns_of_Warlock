@@ -35,12 +35,12 @@ public class MovingPlatform : MonoBehaviour
             lerpval = (Time.time - moveTime) * speed / distance;
             transform.position = Vector3.Lerp(position_2, position_1, lerpval);
         }
-        if (Vector3.Distance(transform.position, position_2) <= .01f)
+        if (Vector3.Distance(transform.position, position_2) <= .1f)
         {
             moveTime = Time.time;
             target_position = true;
         }
-        if (Vector3.Distance(transform.position, position_1) <= .01f)
+        if (Vector3.Distance(transform.position, position_1) <= .1f)
         {
             moveTime = Time.time;
             target_position = false;

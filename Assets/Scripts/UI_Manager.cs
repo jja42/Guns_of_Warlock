@@ -9,6 +9,7 @@ public class UI_Manager : MonoBehaviour
     public Text Item_Tooltip;
     public Text money_text;
     public Image health;
+    public Text player_lives;
     // Start is called before the first frame update
     private void Awake()
     {

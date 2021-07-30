@@ -46,6 +46,7 @@ public class Game_Manager : MonoBehaviour
         }
         UI_Manager.instance.money_text.text = money.ToString();
         UI_Manager.instance.health.fillAmount = (float)player_health / max_player_health;
+        UI_Manager.instance.player_lives.text = player_lives.ToString();
     }
 
     public void LoadScene(int scene_index)
