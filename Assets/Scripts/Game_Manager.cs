@@ -12,6 +12,7 @@ public class Game_Manager : MonoBehaviour
     public int player_health;
     int max_player_health;
     public bool double_jump;
+    public int player_lives;
     Shop shop;
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +34,7 @@ public class Game_Manager : MonoBehaviour
             shop = FindObjectOfType<Shop>();
         }
         player_health = 3;
+        player_lives = 3;
         max_player_health = player_health;
     }
     // Update is called once per frame

@@ -1,0 +1,1 @@
+Warlocks with guns ain't shit but hoes and tricks -Linda
