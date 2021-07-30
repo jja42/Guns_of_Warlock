@@ -55,7 +55,7 @@ public class PlayerCont : MonoBehaviour
     {
         if (!Game_Manager.instance.paused && !dead)
         {
-            if(Game_Manager.instance.player_health <= 0)
+            if(Game_Manager.instance.player_health <= 0 || transform.position.y < -10)
             {
                 Game_Manager.instance.player_health = 3;
                 Game_Manager.instance.player_lives -= 1;
