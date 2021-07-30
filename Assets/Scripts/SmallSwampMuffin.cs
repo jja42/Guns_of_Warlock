@@ -36,14 +36,16 @@ public class SmallSwampMuffin : Enemy
         movetimer = .1f;
         movespeed = 2.0f;
         death_timer = .25f;
-        attack_timer = 1f;
+        attack_timer = .1f;
         aggro = true;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
+        playerdetectdist = 8;
     }
 
     // Update is called once per frame
     protected override void Move()
     {
+        attack_timer = .1f;
         animator.SetBool("Shooting", false);
         animator.SetBool("Moving", true);
         if (!render.flipX)
@@ -61,6 +63,13 @@ public class SmallSwampMuffin : Enemy
             targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
             render.flipX = !render.flipX;
             movetimer = movetimer_og;
+        }
+        if (DetectWall())
+        {
+            x_offset = -x_offset;
+            y_offset = -y_offset;
+            targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
+            render.flipX = !render.flipX;
         }
     }
     protected void Shoot()

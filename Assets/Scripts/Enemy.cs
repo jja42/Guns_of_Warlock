@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
     Material OG_Material;
     bool flashing;
     protected bool aggro;
+    protected float playerdetectdist = 4f;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -102,12 +103,11 @@ public abstract class Enemy : MonoBehaviour
 
     protected bool DetectPlayer()
     {
-        float extradist = 4.0f;
         RaycastHit2D raycastHit;
-        if (render.flipX) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + extradist, player_layer);
+        if (render.flipX) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
         else
         {
-            raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + extradist, player_layer);
+            raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
         }
         Color Raycolor;
 
@@ -121,8 +121,8 @@ public abstract class Enemy : MonoBehaviour
             Raycolor = Color.red;
 
         }
-        if (render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.left * (boxCollider.bounds.extents.y + extradist), Raycolor);
-        if (!render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.right * (boxCollider.bounds.extents.y + extradist), Raycolor);
+        if (render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.left * (boxCollider.bounds.extents.y + playerdetectdist), Raycolor);
+        if (!render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.right * (boxCollider.bounds.extents.y + playerdetectdist), Raycolor);
         return (raycastHit.collider != null);
     }
 
@@ -194,5 +194,16 @@ public abstract class Enemy : MonoBehaviour
 
         // Set the routine to null, signaling that it's finished.
         flashing = false;
+    }
+    protected bool DetectWall()
+    {
+        float extradist = .2f;
+        RaycastHit2D raycastHit;
+        if (render.flipX) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + extradist, ground_layer);
+        else
+        {
+            raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + extradist, ground_layer);
+        }
+        return (raycastHit.collider != null);
     }
 }
