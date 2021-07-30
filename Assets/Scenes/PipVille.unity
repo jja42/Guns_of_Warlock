@@ -2876,6 +2876,7 @@ MonoBehaviour:
   textPrefab: {fileID: 6846805020116119630, guid: f6417263448558641972655d32fd127a, type: 3}
   buttonPrefab: {fileID: 8744426483535540228, guid: 4cecc1340ae602e44ab40f84faa2f006, type: 3}
   talking: 0
+  more_dialogue: 0
 --- !u!1 &1677944155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,11 +3301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 795060136355010046, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.46
+      value: -16.69
       objectReference: {fileID: 0}
     - target: {fileID: 795060136355010046, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.88
+      value: -2.35
       objectReference: {fileID: 0}
     - target: {fileID: 795060136355010046, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.z

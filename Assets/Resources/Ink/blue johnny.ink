@@ -1,6 +1,14 @@
 Hey.
++[Yo]
 -> mawg
-=== mawg ===
+==mawg==
 Those Mothers Against Warlocks with Guns (MAWG) are getting out of hand.
-Someone should stop them. Like you. You should stop them. 
++[Ok]
+->stop
+==stop==
+Someone should stop them. 
++ [Yeah someone should]
+->likeYou
+==likeYou==
+Like you. You should stop them. 
 -> END
