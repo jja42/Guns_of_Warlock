@@ -1,1 +1,1 @@
-﻿{"inkVersion":19,"root":[["^Suzanne lives to the west, past the swamp.","\n","^Also get out of our house.","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":19,"root":[["^Suzanne lives to the west, past the swamp.","\n","ev","str","^Hmm, swampy.","/str","/ev",{"*":"0.c-0","flg":4},{"c-0":["\n",{"->":"go"},{"->":"0.g-0"},{"#f":5}],"g-0":["done",{"#f":5}]}],"done",{"go":["^Ok get out of our house now.","\n","end",{"#f":1}],"#f":1}],"listDefs":{}}
