@@ -30,18 +30,6 @@ MonoBehaviour:
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: ea87d35cbceadc04b831d72d4c450597, type: 3}
   - compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: f4af19223b056424a9dbe226b9aa32fc, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 4900000, guid: 09c8bf6101381ab4a879467f761ba320, type: 3}
-  - compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: 863645cd52c2a0746a3acd89b00d34de, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 4900000, guid: a66a93327d6ddf94aa3aa0ac3b321212, type: 3}
-  - compileAutomatically: 0
-    inkAsset: {fileID: 102900000, guid: 99bc11f69547d7747a2994a5558370ae, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 4900000, guid: 9d0f4275846f2b24da790ce32b496be1, type: 3}
-  - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: c6ceb3978a895b649b3ce63931a88b64, type: 3}
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 7b67484b9d4e14a41aa1208c6a96e6e2, type: 3}
@@ -58,8 +46,20 @@ MonoBehaviour:
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 0747a82b54759b44cbeda43dcafe8346, type: 3}
   - compileAutomatically: 0
+    inkAsset: {fileID: 102900000, guid: 99bc11f69547d7747a2994a5558370ae, type: 3}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 4900000, guid: 9d0f4275846f2b24da790ce32b496be1, type: 3}
+  - compileAutomatically: 0
+    inkAsset: {fileID: 102900000, guid: f4af19223b056424a9dbe226b9aa32fc, type: 3}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 0}
+  - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: 824f29810ab427e409b6736f1b00d7c9, type: 3}
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 4900000, guid: 4564f9d2e2ad0154b9e34212d71418a2, type: 3}
+  - compileAutomatically: 0
+    inkAsset: {fileID: 102900000, guid: 863645cd52c2a0746a3acd89b00d34de, type: 3}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 0}
   pendingCompilationStack: []
   compilationStack: []

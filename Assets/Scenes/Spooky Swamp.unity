@@ -1488,7 +1488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367214626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.699495, y: 2.216204, z: -0.06560351}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3247147848018273653}
@@ -17159,7 +17159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3247147848018273654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.71, y: -4.67, z: 0}
+  m_LocalPosition: {x: 5.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 367214627}
@@ -17285,6 +17285,10 @@ PrefabInstance:
       propertyPath: money_text
       value: 
       objectReference: {fileID: 658198659}
+    - target: {fileID: 4430935166654665660, guid: 115999190b06c76428643497e76393a5, type: 3}
+      propertyPath: double_jump
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4430935166654665660, guid: 115999190b06c76428643497e76393a5, type: 3}
       propertyPath: Item_Tooltip
       value: 
