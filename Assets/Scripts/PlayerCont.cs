@@ -11,7 +11,7 @@ public class PlayerCont : MonoBehaviour
     bool db_jump;
     private float walkspeed = 3.5f;
     private Rigidbody2D rigidbody2d;
-    private Vector2 jumpforce;
+    public int jumpforce;
     private BoxCollider2D boxCollider;
     public LayerMask ground_layer;
     public bool grounded;
@@ -37,7 +37,6 @@ public class PlayerCont : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         render = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        jumpforce = new Vector2(0, 400);
         grounded = false;
         animator = GetComponent<Animator>();
         shot_timer = 0;
@@ -84,21 +83,19 @@ public class PlayerCont : MonoBehaviour
                 {
                     audioSource.Stop();
                     audioSource.PlayOneShot(jump);
-                    rigidbody2d.AddForce(jumpforce);
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpforce);
                 }
                 if(!grounded && db_jump && Game_Manager.instance.double_jump)
-                {
+                { 
                     audioSource.Stop();
                     audioSource.PlayOneShot(jump);
-                    rigidbody2d.AddForce(jumpforce/2);
                     db_jump = false;
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpforce);
                 }
             }
 
             if (rigidbody2d.velocity.y < 0) { //if falling, fall faster
-
                 rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
-
             }
 
             //Shooting
