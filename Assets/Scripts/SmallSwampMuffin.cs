@@ -7,6 +7,7 @@ public class SmallSwampMuffin : Enemy
     public GameObject projectilePrefab;
     public float x_offset;
     public float y_offset;
+    public AudioClip shoot;
     protected override void AttackPlayer()
     {
         animator.SetBool("Moving", false);
@@ -67,6 +68,7 @@ public class SmallSwampMuffin : Enemy
         GameObject shot = Instantiate(projectilePrefab);
         SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
         Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+        audioSource.PlayOneShot(shoot);
         if (!render.flipX)
         {
             shot_rigid.AddForce(new Vector2(500, 0));

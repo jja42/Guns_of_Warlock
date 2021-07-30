@@ -244,7 +244,7 @@ MonoBehaviour:
   death_timer: 0
   impact: {fileID: 0}
   flashMaterial: {fileID: 2100000, guid: 35df6f1b17e13bf4d953d106825ffb6f, type: 2}
-  coin: {fileID: 0}
+  coin: {fileID: 3985942845318096080, guid: c617135fba5d61a4a95a8e71d0767972, type: 3}
   x_offset: 5
   y_offset: 0
   speed: 0
