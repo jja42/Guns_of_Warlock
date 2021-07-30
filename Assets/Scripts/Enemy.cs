@@ -64,15 +64,6 @@ public abstract class Enemy : MonoBehaviour
         if (!Game_Manager.instance.paused)
         {
             grounded = IsGrounded();
-            if (grounded)
-            {
-                circleCollider.isTrigger = false;
-            }
-            else
-            {
-                circleCollider.isTrigger = true;
-            }
-
             if (health <= 0)
             {
                 OnDeath();
