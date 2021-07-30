@@ -26,7 +26,7 @@ public class PlayerCont : MonoBehaviour
     public AudioClip shoot;
     public AudioClip death;
     public AudioClip coin_collect;
-    public AudioClip[] hurt = new AudioClip[10];
+    public AudioClip[] hurt = new AudioClip[11];
     private GameObject npc;
     public GameObject q_mark;
     public GameObject coin;
@@ -57,8 +57,6 @@ public class PlayerCont : MonoBehaviour
         {
             if(Game_Manager.instance.player_health <= 0 || transform.position.y < -10)
             {
-                Game_Manager.instance.player_health = 3;
-                Game_Manager.instance.player_lives -= 1;
                 StartCoroutine(Respawn());
             }
             //health_bar.value = health;
@@ -255,7 +253,6 @@ public class PlayerCont : MonoBehaviour
             {
                 if (collision.gameObject.CompareTag("Spikes"))
                 {
-                    Game_Manager.instance.player_lives -= 1;
                     StartCoroutine(Respawn());
                     return;
                 }
@@ -322,12 +319,22 @@ public class PlayerCont : MonoBehaviour
         }
     }
 
-    IEnumerator Respawn()
+    public IEnumerator Respawn()
     {
+        Game_Manager.instance.player_lives -= 1;
+        Game_Manager.instance.player_health = 3;
+        if (Game_Manager.instance.Greg)
+        {
+            audioSource.PlayOneShot(hurt[10]);
+            Game_Manager.instance.Greg = false;
+        }
+        else
+        {
+            audioSource.PlayOneShot(death);
+        }
         boxCollider.enabled = false;
         render.enabled = false;
         dead = true;
-        audioSource.PlayOneShot(death);
         yield return new WaitForSeconds(death.length/2);
         invincibility_timer = 1.2f;
         boxCollider.enabled = true;

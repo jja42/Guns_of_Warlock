@@ -38,6 +38,11 @@ public class DialogueManager : MonoBehaviour
             }
             return 0;
         });
+        story.BindExternalFunction("magic_trick",()=>
+            {
+                Game_Manager.instance.Greg = true;
+                Game_Manager.instance.KillPlayer();
+        });
         refreshUI();
     }
 
