@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Platform
   - Spikes
+  - Inventory
   layers:
   - Default
   - TransparentFX

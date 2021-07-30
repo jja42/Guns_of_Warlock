@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.34725323, b: 0.055980783, a: 1}
+  m_Color: {r: 0.6981132, g: 0.34725323, b: 0.055980783, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -759,3 +759,4 @@ MonoBehaviour:
   money_text: {fileID: 1649782732541066305}
   health: {fileID: 1649782733317520337}
   player_lives: {fileID: 1649782733009144642}
+  Inventory: {fileID: 1649782733629999519}

@@ -10,6 +10,7 @@ public class UI_Manager : MonoBehaviour
     public Text money_text;
     public Image health;
     public Text player_lives;
+    public Image Inventory;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class UI_Manager : MonoBehaviour
     }
     void Start()
     {
-        
+        Inventory.color = new Color(Inventory.color.r, Inventory.color.g, Inventory.color.b);
     }
 
     // Update is called once per frame
