@@ -2559,6 +2559,8 @@ MonoBehaviour:
   Item_Tooltip: {fileID: 229783310}
   money_text: {fileID: 658198659}
   health: {fileID: 0}
+  player_lives: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!1 &1540347709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,6 +3286,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.42
+      objectReference: {fileID: 0}
     - target: {fileID: 795060136355010035, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_Name
       value: Warlock
