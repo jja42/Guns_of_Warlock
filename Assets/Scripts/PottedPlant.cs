@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : Enemy
+public class PottedPlant : Enemy
 {
     public float x_offset;
     public float y_offset;
@@ -10,12 +10,13 @@ public class Bat : Enemy
     protected override void Start()
     {
         base.Start();
-        
+
         movetimer_og = 1;
         movetimer = .1f;
         movespeed = 3.0f;
         death_timer = .25f;
-        targetpos = new Vector3(start_pos.x+x_offset, start_pos.y+y_offset);
+        health = 5;
+        targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
     }
     protected override void Update()
     {
@@ -28,7 +29,7 @@ public class Bat : Enemy
 
     protected override void Move()
     {
-            transform.position = Vector3.MoveTowards(transform.position, targetpos,movespeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetpos, movespeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetpos) <= .1f)
             {
                 x_offset = -x_offset;

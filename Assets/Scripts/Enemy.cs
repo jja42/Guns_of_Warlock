@@ -30,6 +30,7 @@ public abstract class Enemy : MonoBehaviour
     float flash_duration;
     Material OG_Material;
     bool flashing;
+    protected bool aggro;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -65,7 +66,8 @@ public abstract class Enemy : MonoBehaviour
             }
             else
             {
-                player_spotted = DetectPlayer();
+                if(aggro)
+                    player_spotted = DetectPlayer();
                 if (player_spotted)
                 {
                     AttackPlayer();
