@@ -1651,6 +1651,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.48
+      objectReference: {fileID: 0}
     - target: {fileID: 795060136355010035, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_Name
       value: Warlock
