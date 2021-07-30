@@ -131,12 +131,14 @@ public class PlayerCont : MonoBehaviour
             //Invincibility
             if (invincibility_timer > 0)
             {
-                if (invincibility_timer % 2 == 0) render.enabled = false;
-                else
-                {
-                    render.enabled = true;
-                }
+                render.enabled = !render.enabled;
                 invincibility_timer-= Time.deltaTime;
+                gameObject.layer = LayerMask.NameToLayer("Invulnerable");
+            }
+            else
+            {
+                render.enabled = true;
+                gameObject.layer = LayerMask.NameToLayer("Player");
             }
             NPCFind();
             if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance.talking)
@@ -241,15 +243,23 @@ public class PlayerCont : MonoBehaviour
             //Enemy enemy = (Enemy)collision.gameObject.GetComponent(typeof(Enemy));
             if (invincibility_timer <= 0)
             {
-                Game_Manager.instance.player_health -= 1;
-                invincibility_timer = 1.2f;
-                if (render.flipX)
+                if (collision.gameObject.CompareTag("Spikes"))
                 {
-                    rigidbody2d.AddForce(Vector2.right * 200 + Vector2.up * 150);
+                    Game_Manager.instance.player_lives -= 1;
+                    Respawn();
                 }
                 else
                 {
-                    rigidbody2d.AddForce(Vector2.left * 200 + Vector2.up * 150);
+                    Game_Manager.instance.player_health -= 1;
+                }
+                invincibility_timer = 1.2f;
+                if (render.flipX)
+                {
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x + 4, 3);
+                }
+                else
+                {
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x - 4, 3);
                 }
                 int rand_index = Random.Range(0, 10);
                 audioSource.PlayOneShot(hurt[rand_index]);
@@ -277,5 +287,32 @@ public class PlayerCont : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform")){
             transform.parent = null;
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            //Enemy enemy = (Enemy)collision.gameObject.GetComponent(typeof(Enemy));
+            if (invincibility_timer <= 0)
+            {
+                Game_Manager.instance.player_health -= 1;
+                invincibility_timer = 1.2f;
+                if (render.flipX)
+                {
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x + 4, 3);
+                }
+                else
+                {
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x - 4, 3);
+                }
+                int rand_index = Random.Range(0, 10);
+                audioSource.PlayOneShot(hurt[rand_index]);
+            }
+        }
+    }
+
+    void Respawn()
+    {
+
     }
 }

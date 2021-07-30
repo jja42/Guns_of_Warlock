@@ -5,7 +5,7 @@ using UnityEngine;
 public class SmallSwampMuffin : Enemy
 {
     public GameObject projectilePrefab;
-    protected override void ChasePlayer()
+    protected override void AttackPlayer()
     {
         if(attack_timer <= 0)
             Shoot();
@@ -33,22 +33,22 @@ public class SmallSwampMuffin : Enemy
     }
 
     // Update is called once per frame
-    protected override void Wander()
+    protected override void Move()
     {
-        if (transform.position.x < targetpos.x)
-        {
-            transform.position = new Vector3(transform.position.x + movespeed * Time.deltaTime, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > targetpos.x)
-        {
-            transform.position = new Vector3(transform.position.x - movespeed * Time.deltaTime, transform.position.y, transform.position.z);
-        }
-        if (Vector3.Distance(transform.position, targetpos) <= .1f)
-        {
-            render.flipX = !render.flipX;
-            idle = true;
-        }
-        player_spotted = DetectPlayer();
+        //if (transform.position.x < targetpos.x)
+        //{
+        //    transform.position = new Vector3(transform.position.x + movespeed * Time.deltaTime, transform.position.y, transform.position.z);
+        //}
+        //if (transform.position.x > targetpos.x)
+        //{
+        //    transform.position = new Vector3(transform.position.x - movespeed * Time.deltaTime, transform.position.y, transform.position.z);
+        //}
+        //if (Vector3.Distance(transform.position, targetpos) <= .1f)
+        //{
+        //    render.flipX = !render.flipX;
+        //    idle = true;
+        //}
+        //player_spotted = DetectPlayer();
     }
     protected void Shoot()
     {
