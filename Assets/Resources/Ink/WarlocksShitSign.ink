@@ -1,1 +1,1 @@
-Warlocks with guns ain't shit but hoes and tricks -Linda
+I hate Warlocks with Guns and also I live here and I hate everyone and everything -Linda

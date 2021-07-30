@@ -1,1 +1,1 @@
-Keep going for Mobster Meadows, but beware of mobsters and other meadow inhabitants. Keep going for Mt. Koo-chee.
+Keep going for Mobster Meadows, but beware of mobsters and other meadow inhabitants that definitely don't have money. Farther east is Linda's Bouncy Castle. It is not bouncy.
