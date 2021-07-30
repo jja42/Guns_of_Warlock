@@ -135,6 +135,7 @@ MonoBehaviour:
   health_bar: {fileID: 0}
   jump: {fileID: 8300000, guid: 31ff1b21dbeaf8f4eb29766ccd81cf0a, type: 3}
   shoot: {fileID: 8300000, guid: 0ee8704926d9c6c4a97a0f86b8626b61, type: 3}
+  death: {fileID: 8300000, guid: 8c58aa07b3fac5142accc74f7dd2b039, type: 3}
   coin_collect: {fileID: 8300000, guid: d8192acd6d9aac34b9f7041b313c87f2, type: 3}
   hurt:
   - {fileID: 8300000, guid: f6c550cb0e261fe4bb610dde83ca973a, type: 3}
