@@ -11,6 +11,7 @@ public class Game_Manager : MonoBehaviour
     public bool shopping;
     public int player_health;
     int max_player_health;
+    public bool double_jump;
     Shop shop;
     // Start is called before the first frame update
     void Awake()

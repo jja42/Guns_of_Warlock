@@ -8,6 +8,7 @@ public class PlayerCont : MonoBehaviour
 {
     private float x;
     private float y;
+    bool db_jump;
     private float walkspeed = 3.5f;
     private Rigidbody2D rigidbody2d;
     private Vector2 jumpforce;
@@ -43,6 +44,7 @@ public class PlayerCont : MonoBehaviour
         invincibility_timer = 0;
         q_mark.SetActive(false);
         coin.SetActive(false);
+        db_jump = true;
     }
 
     // Update is called once per frame
@@ -54,6 +56,8 @@ public class PlayerCont : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             y = Input.GetAxis("Vertical");
             grounded = IsGrounded();
+            if (grounded)
+                db_jump = true;
             // Horizontal Movement
             if (x != 0)
             {
@@ -74,11 +78,21 @@ public class PlayerCont : MonoBehaviour
             }
 
             // Vertical Movement
-            if (Input.GetKeyDown(KeyCode.Z) && grounded)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                audioSource.Stop();
-                audioSource.PlayOneShot(jump);
-                rigidbody2d.AddForce(jumpforce);
+                if (grounded)
+                {
+                    audioSource.Stop();
+                    audioSource.PlayOneShot(jump);
+                    rigidbody2d.AddForce(jumpforce);
+                }
+                if(!grounded && db_jump && Game_Manager.instance.double_jump)
+                {
+                    audioSource.Stop();
+                    audioSource.PlayOneShot(jump);
+                    rigidbody2d.AddForce(jumpforce/2);
+                    db_jump = false;
+                }
             }
 
             if (rigidbody2d.velocity.y < 0) { //if falling, fall faster
