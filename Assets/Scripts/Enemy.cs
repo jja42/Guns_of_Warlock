@@ -15,16 +15,13 @@ public abstract class Enemy : MonoBehaviour
     protected bool player_spotted;
     protected Animator animator;
     protected BoxCollider2D boxCollider;
-    protected CircleCollider2D circleCollider;
     protected Rigidbody2D rigidbod;
-    protected bool look_dir;
     protected LayerMask player_layer;
     protected bool grounded;
     protected LayerMask ground_layer;
     public float death_timer;
     protected AudioSource audioSource;
     public AudioClip impact;
-    protected bool idle;
     protected Vector3 targetpos;
     protected SpriteRenderer render;
     public Material flashMaterial;
@@ -38,7 +35,6 @@ public abstract class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        circleCollider = GetComponent<CircleCollider2D>();
         rigidbod = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         render = GetComponent<SpriteRenderer>();
@@ -51,7 +47,6 @@ public abstract class Enemy : MonoBehaviour
         ground_layer = LayerMask.GetMask("Ground");
         death_timer = 20;
         start_pos = transform.position;
-        idle = true;
         OG_Material = render.material;
         flash_duration = .25f;
         flashing = false;
@@ -70,35 +65,23 @@ public abstract class Enemy : MonoBehaviour
             }
             else
             {
-                //player_spotted = DetectPlayer();
+                player_spotted = DetectPlayer();
                 if (player_spotted)
                 {
-                    ChasePlayer();
+                    AttackPlayer();
                 }
                 else
                 {
                     if (movetimer <= 0)
                     {
-                        idle = false;
-                        if (render.flipX)
-                        {
-                            targetpos = new Vector3(transform.position.x - 5, transform.position.y);
-                        }
-                        else
-                        {
-                            targetpos = new Vector3(transform.position.x + 5, transform.position.y);
-                        }
-                        movetimer = movetimer_og;
+                        Move();
                     }
-                    if (idle)
+                    else
                     {
                         movetimer -= Time.deltaTime;
                         Idle();
                     }
-                    else
-                    {
-                        Wander();
-                    }
+
                 }
             }
         }
@@ -141,7 +124,7 @@ public abstract class Enemy : MonoBehaviour
         return (raycastHit.collider != null);
     }
 
-    protected abstract void ChasePlayer();
+    protected abstract void AttackPlayer();
     protected virtual void OnDeath()
     {
         boxCollider.enabled = false;
@@ -163,12 +146,12 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void Idle();
 
-    protected abstract void Wander();
+    protected abstract void Move();
 
     protected bool IsGrounded()
     {
         float extraheight = .1f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(circleCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y + extraheight, ground_layer);
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y + extraheight, ground_layer);
         Color Raycolor;
 
         if (raycastHit.collider != null)
@@ -181,7 +164,7 @@ public abstract class Enemy : MonoBehaviour
             Raycolor = Color.red;
 
         }
-        Debug.DrawRay(circleCollider.bounds.center, Vector2.down * (circleCollider.bounds.extents.y + extraheight), Raycolor);
+        Debug.DrawRay(boxCollider.bounds.center, Vector2.down * (boxCollider.bounds.extents.y + extraheight), Raycolor);
         return (raycastHit.collider != null);
     }
     protected void OnTriggerEnter2D(Collider2D collision)

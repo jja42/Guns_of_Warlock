@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
     public List<Item> characterItems = new List<Item>();
-    public UI_Inventory inventoryUI;
+    UI_Inventory inventoryUI;
     bool init;
     AudioSource audioSource;
     public AudioClip coin_sfx;
@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
     }
     public void Start()
     {
+        inventoryUI = FindObjectOfType<UI_Inventory>();
         inventoryUI.gameObject.SetActive(false);
         init = false;
         audioSource = GetComponent<AudioSource>();
