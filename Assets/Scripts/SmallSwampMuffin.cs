@@ -36,7 +36,7 @@ public class SmallSwampMuffin : Enemy
         movetimer = .1f;
         movespeed = 2.0f;
         death_timer = .25f;
-        attack_timer = .1f;
+        attack_timer = .25f;
         aggro = true;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
         playerdetectdist = 8;
@@ -45,7 +45,7 @@ public class SmallSwampMuffin : Enemy
     // Update is called once per frame
     protected override void Move()
     {
-        attack_timer = .1f;
+        attack_timer = .25f;
         animator.SetBool("Shooting", false);
         animator.SetBool("Moving", true);
         if (!render.flipX)
