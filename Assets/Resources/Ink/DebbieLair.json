@@ -1,0 +1,1 @@
+﻿{"inkVersion":19,"root":[["^This is my secret lair entrance. Too bad you can't swim in anti-warlock juice,","\n","^warlock.","\n","ev","str","^Huh.","/str","/ev",{"*":"0.c-0","flg":4},{"c-0":["\n",{"->":"gottem"},{"->":"0.g-0"},{"#f":5}],"g-0":["done",{"#f":5}]}],"done",{"gottem":["^Gaslight Gatekeep Girlboss - gottem","\n","end",{"#f":1}],"#f":1}],"listDefs":{}}
