@@ -90,7 +90,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
         audioSource.PlayOneShot(impact);
         health -= damage;
@@ -101,28 +101,27 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected bool DetectPlayer()
+    protected virtual bool DetectPlayer()
     {
         RaycastHit2D raycastHit;
-        if (render.flipX) raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.left, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
+        if (render.flipX) raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x,boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.left, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
         else
         {
-            raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
+            raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.right, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
         }
         Color Raycolor;
 
         if (raycastHit.collider != null)
         {
             Raycolor = Color.green;
-
         }
         else
         {
             Raycolor = Color.red;
 
         }
-        if (render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.left * (boxCollider.bounds.extents.y + playerdetectdist), Raycolor);
-        if (!render.flipX) Debug.DrawRay(boxCollider.bounds.center, Vector2.right * (boxCollider.bounds.extents.y + playerdetectdist), Raycolor);
+        if (render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.left * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
+        if (!render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.right * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
         return (raycastHit.collider != null);
     }
 
@@ -136,7 +135,7 @@ public abstract class Enemy : MonoBehaviour
             if(drop < drop_chance)
             {
                 GameObject obj = Instantiate(coin);
-                obj.transform.position = transform.position;
+                obj.transform.position = transform.position + new Vector3(0,.1f);
             }
             Destroy(gameObject); 
         }
@@ -175,7 +174,14 @@ public abstract class Enemy : MonoBehaviour
         {
             if (collision.gameObject.name.Contains("Fireball"))
             {
-                TakeDamage(1);
+                if (Data_Manager.instance.Flags[4])
+                {
+                    TakeDamage(2);
+                }
+                else
+                {
+                    TakeDamage(1);
+                }
                 Destroy(collision.gameObject);
             }
         }
@@ -195,7 +201,7 @@ public abstract class Enemy : MonoBehaviour
         // Set the routine to null, signaling that it's finished.
         flashing = false;
     }
-    protected bool DetectWall()
+    protected virtual bool DetectWall()
     {
         float extradist = .2f;
         RaycastHit2D raycastHit;
