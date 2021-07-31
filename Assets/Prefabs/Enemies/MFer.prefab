@@ -118,7 +118,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -268,5 +268,5 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: 35df6f1b17e13bf4d953d106825ffb6f, type: 2}
   coin: {fileID: 3985942845318096080, guid: c617135fba5d61a4a95a8e71d0767972, type: 3}
   projectilePrefab: {fileID: 5270037998932698614, guid: 422d5b44fd02d5e4f94e938acef19344, type: 3}
-  shoot: {fileID: 0}
+  shoot: {fileID: 8300000, guid: 91d4792f8e5f59e48b70c48ba566341d, type: 3}
   jump_timer: 0

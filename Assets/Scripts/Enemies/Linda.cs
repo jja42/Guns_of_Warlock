@@ -20,6 +20,9 @@ public class Linda : Enemy
     int lives;
     bool reset;
     bool dir;
+    bool in_air;
+    float air_timer;
+    float air_shot_timer = .25f;
     protected override void AttackPlayer()
     {
         animator.SetBool("Moving", false);
@@ -49,14 +52,15 @@ public class Linda : Enemy
         movespeed = 2.0f;
         death_timer = .25f;
         attack_timer = .1f;
-        health = 20;
+        health = 30;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
         playerdetectdist = 8;
-        jump_timer = 1;
+        jump_timer = 4;
+        air_timer = 5;
     }
     protected override void Update()
     {
-        if (Data_Manager.instance.Flags[0])
+        if (Data_Manager.instance.Flags[1])
         {
             Destroy(gameObject);
         }
@@ -81,14 +85,14 @@ public class Linda : Enemy
                 StartCoroutine(Reset());
             }
         }
-        if (!Game_Manager.instance.paused && active)
+        if (!Game_Manager.instance.paused && active && !in_air)
         {
             if (health > 0)
             {
                 if (jump_timer <= 0 && grounded)
                 {
                     Jump(dir);
-                    jump_timer = 4;
+                    jump_timer = 8;
                 }
                 else
                 {
@@ -96,6 +100,28 @@ public class Linda : Enemy
                 }
             }
             base.Update();
+        }
+        if (active && in_air)
+        {
+            if (air_timer <= 0)
+            {
+                in_air = false;
+                rigidbod.gravityScale = 1;
+            }
+            else
+            {
+                AirMove();
+                if (air_shot_timer <= 0)
+                {
+                    FlyingShoot();
+                    air_shot_timer = .35f;
+                }
+                else
+                {
+                    air_shot_timer -= Time.deltaTime;
+                }
+                air_timer -= Time.deltaTime;
+            }
         }
     }
     // Update is called once per frame
@@ -174,9 +200,12 @@ public class Linda : Enemy
     protected void Jump(bool dir)
     {
         if (dir)
-            rigidbod.velocity = new Vector2(jumpforce, jumpforce * 1.5f);
+            rigidbod.velocity = new Vector2(jumpforce, jumpforce * 2f);
         else
-            rigidbod.velocity = new Vector2(-jumpforce, jumpforce * 1.5f);
+            rigidbod.velocity = new Vector2(-jumpforce, jumpforce * 2f);
+        rigidbod.gravityScale = 0;
+        air_timer = 5;
+        in_air = true;
     }
     protected override void OnDeath()
     {
@@ -196,13 +225,15 @@ public class Linda : Enemy
     protected IEnumerator Reset()
     {
         music.Stop();
+        in_air = false;
+        rigidbod.gravityScale = 1;
         yield return new WaitForSeconds(2);
         music.clip = level_music;
         music.Play();
         Blocks.SetActive(false);
         transform.position = start_pos;
         player_spotted = false;
-        health = 20;
+        health = 30;
         Idle();
         reset = false;
     }
@@ -216,5 +247,44 @@ public class Linda : Enemy
             raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.right, boxCollider.bounds.extents.x + extradist, ground_layer);
         }
         return (raycastHit.collider != null);
+    }
+
+    protected void FlyingShoot()
+    {
+        GameObject shot = Instantiate(projectilePrefab);
+        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+        audioSource.PlayOneShot(shoot);
+        shot_rigid.AddForce(new Vector2(0, -500));
+        shot.transform.position = new Vector3(transform.position.x, transform.position.y - 1f);
+        Destroy(shot, 2);
+    }
+    protected void AirMove()
+    {
+        if (transform.position.x < targetpos.x)
+        {
+            transform.position += Vector3.right * Time.deltaTime * movespeed;
+            dir = true;
+        }
+        if (transform.position.x > targetpos.x)
+        {
+            transform.position += Vector3.left * Time.deltaTime * movespeed;
+            dir = false;
+        }
+        if (Mathf.Abs(transform.position.x - targetpos.x) <= .1f)
+        {
+            x_offset = -x_offset;
+            y_offset = -y_offset;
+            targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
+            render.flipX = !render.flipX;
+            movetimer = movetimer_og;
+        }
+        if (transform.position.x < player.transform.position.x)
+        {
+            render.flipX = false;
+        }
+        if (transform.position.x > player.transform.position.x)
+        {
+            render.flipX = true;
+        }
     }
 }

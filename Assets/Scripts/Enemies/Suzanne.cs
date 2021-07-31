@@ -49,7 +49,7 @@ public class Suzanne : Enemy
         movespeed = 2.0f;
         death_timer = .25f;
         attack_timer = .1f;
-        health = 16;
+        health = 15;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
         playerdetectdist = 8;
         jump_timer = 1;
@@ -202,7 +202,7 @@ public class Suzanne : Enemy
         Blocks.SetActive(false);
         transform.position = start_pos;
         player_spotted = false;
-        health = 16;
+        health = 15;
         Idle();
         reset = false;
     }

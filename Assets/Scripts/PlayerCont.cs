@@ -101,7 +101,7 @@ public class PlayerCont : MonoBehaviour
                 }
             }
 
-            if (rigidbody2d.velocity.y < 0) { //if falling, fall faster
+            if (rigidbody2d.velocity.y < 0 && rigidbody2d.velocity.y > -20) { //if falling, fall faster, to an extent
                 rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
             }
 
@@ -287,6 +287,10 @@ public class PlayerCont : MonoBehaviour
             Game_Manager.instance.money += 10;
             audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Juice"))
+        {
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
