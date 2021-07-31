@@ -14,4 +14,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopkeeperHouse.unity
     guid: 9df44df9f8ba1b34ba5c0e8161e907bb
+  - enabled: 1
+    path: Assets/Scenes/RedHouse.unity
+    guid: 83cc9e785b4e6df4ba78a08c6c1cc7ed
+  - enabled: 1
+    path: Assets/Scenes/GreenHouse.unity
+    guid: 19ec299ab58989240888ddffe64d81c4
+  - enabled: 1
+    path: Assets/Scenes/Spooky Swamp.unity
+    guid: 4684410a0c132db4397875be2324a159
+  - enabled: 1
+    path: Assets/Scenes/SuzanneTower.unity
+    guid: 6130700ca1725bc4794a266057e4fcc3
+  - enabled: 1
+    path: Assets/Scenes/MobsterMeadows.unity
+    guid: 40de109f56eaf434e97472316cbba3c3
+  - enabled: 1
+    path: Assets/Scenes/LindaCastle.unity
+    guid: f3c1af675018f3f4da0181aebfd4ba23
+  - enabled: 1
+    path: Assets/Scenes/Debbie.unity
+    guid: 9733050bc18189344b8a26ee9678a02c
+  - enabled: 1
+    path: Assets/Scenes/GregShack.unity
+    guid: d083ea891d173eb4797717d8e17d5903
   m_configObjects: {}

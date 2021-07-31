@@ -73,4 +73,8 @@ public class Game_Manager : MonoBehaviour
     {
         player.StartCoroutine(player.Respawn());
     }
+    public void ActivatePopup()
+    {
+        StartCoroutine(UI_Manager.instance.ActivatePopup());
+    }
 }

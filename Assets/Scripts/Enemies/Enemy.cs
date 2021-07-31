@@ -172,15 +172,22 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (collision.gameObject.name.Contains("Fireball"))
+            if (collision.gameObject.name.Contains("Fireball") && !flashing)
             {
-                if (Data_Manager.instance.Flags[4])
+                if (Data_Manager.instance.Flags[4] && Data_Manager.instance.Flags[8])
                 {
-                    TakeDamage(2);
+                    TakeDamage(3);
                 }
                 else
                 {
-                    TakeDamage(1);
+                    if (Data_Manager.instance.Flags[4])
+                    {
+                        TakeDamage(2);
+                    }
+                    else
+                    {
+                        TakeDamage(1);
+                    }
                 }
                 Destroy(collision.gameObject);
             }

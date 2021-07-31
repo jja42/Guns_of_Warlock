@@ -18,7 +18,7 @@ public class Data_Manager : MonoBehaviour
     //5 Shotgun
     //6 Invis
     //7 Juice Suit
-    //8
+    //8 Magic Updgrade 2
     //9
     // Update is called once per frame
     private void Start()

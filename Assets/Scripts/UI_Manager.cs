@@ -11,6 +11,7 @@ public class UI_Manager : MonoBehaviour
     public Image health;
     public Text player_lives;
     public Image Inventory;
+    public Text Popup;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -25,5 +26,11 @@ public class UI_Manager : MonoBehaviour
     void Update()
     {
         
+    }
+    public IEnumerator ActivatePopup()
+    {
+        Popup.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
+        Popup.gameObject.SetActive(false);
     }
 }

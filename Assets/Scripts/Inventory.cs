@@ -31,6 +31,12 @@ public class Inventory : MonoBehaviour
     }
     public void Update()
     {
+        if(inventoryUI == null)
+        {
+            inventoryUI = FindObjectOfType<UI_Inventory>();
+            inventoryUI.gameObject.SetActive(false);
+            ReloadInventory();
+        }
         if (!init)
         {
             GiveItem("Gun");
@@ -72,8 +78,15 @@ public class Inventory : MonoBehaviour
         Item item = CheckForItem(itemName);
         if (item != null)
         {
-            characterItems.Remove(item);
-            inventoryUI.RemoveItem(index);
+            if (item.count > 1)
+            {
+                item.count -= 1;
+            }
+            else
+            {
+                characterItems.Remove(item);
+                inventoryUI.RemoveItem(index);
+            }
         }
     }
     public void RemoveItem(string itemName)
@@ -88,5 +101,14 @@ public class Inventory : MonoBehaviour
     public void CoinSound()
     {
         audioSource.PlayOneShot(coin_sfx);
+    }
+    void ReloadInventory()
+    {
+        foreach( Item item in characterItems){
+            bool state = inventoryUI.gameObject.activeSelf;
+            inventoryUI.gameObject.SetActive(true);
+            inventoryUI.AddNewItem(item);
+            inventoryUI.gameObject.SetActive(state);
+        }
     }
 }
