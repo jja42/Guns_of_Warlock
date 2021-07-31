@@ -16,6 +16,7 @@ public class MotherTrucker : Enemy
         death_timer = .25f;
         attack_timer = 1f;
         jump_timer = 1;
+        health = 8;
     }
     protected override void Update()
     {
