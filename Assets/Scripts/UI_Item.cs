@@ -10,6 +10,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
     public int index;
     private Image spriteImage;
     Text Item_Tooltip;
+    public Text stack_text;
     //private UI_Item selectedItem;
     private void Awake()
     {
@@ -22,7 +23,21 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
     {
         Item_Tooltip = UI_Manager.instance.Item_Tooltip;
     }
-
+    void Update()
+    {
+        if (item != null)
+        {
+            if (item.count > 1)
+            {
+                stack_text.gameObject.SetActive(true);
+                stack_text.text = item.count.ToString();
+            }
+            else
+            {
+                stack_text.gameObject.SetActive(false);
+            }
+        }
+    }
     public void UpdateItem(Item Item)
     {
         item = Item;
@@ -48,7 +63,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                     Game_Manager.instance.money -= item.cost;
                     if (Inventory.instance.CheckStackable(item.name) != null)
                     {
-                        int count = Inventory.instance.StackItem(item.name);
+                        Inventory.instance.StackItem(item.name);
                     }
                     else
                     {

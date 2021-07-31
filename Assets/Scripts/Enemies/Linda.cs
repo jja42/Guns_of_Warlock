@@ -129,8 +129,11 @@ public class Linda : Enemy
     {
         if (active)
         {
-            animator.SetBool("Shooting", false);
-            animator.SetBool("Moving", true);
+            if (attack_timer > .5f)
+            {
+                animator.SetBool("Shooting", false);
+                animator.SetBool("Moving", true);
+            }
             if (transform.position.x < targetpos.x)
             {
                 transform.position += Vector3.right * Time.deltaTime * movespeed;
@@ -199,6 +202,7 @@ public class Linda : Enemy
     }
     protected void Jump(bool dir)
     {
+        animator.SetTrigger("Jumping");
         if (dir)
             rigidbod.velocity = new Vector2(jumpforce, jumpforce * 2f);
         else
@@ -212,6 +216,8 @@ public class Linda : Enemy
         music.clip = level_music;
         music.Play();
         Blocks.SetActive(false);
+        Data_Manager.instance.Flags[1] = true;
+        Game_Manager.instance.ActivatePopup();
         base.OnDeath();
     }
 
@@ -262,12 +268,12 @@ public class Linda : Enemy
     {
         if (transform.position.x < targetpos.x)
         {
-            transform.position += Vector3.right * Time.deltaTime * movespeed;
+            transform.position += Vector3.right * Time.deltaTime * movespeed * 2;
             dir = true;
         }
         if (transform.position.x > targetpos.x)
         {
-            transform.position += Vector3.left * Time.deltaTime * movespeed;
+            transform.position += Vector3.left * Time.deltaTime * movespeed * 2;
             dir = false;
         }
         if (Mathf.Abs(transform.position.x - targetpos.x) <= .1f)
@@ -285,6 +291,13 @@ public class Linda : Enemy
         if (transform.position.x > player.transform.position.x)
         {
             render.flipX = true;
+        }
+        if (DetectWall())
+        {
+            x_offset = -x_offset;
+            y_offset = -y_offset;
+            targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
+            render.flipX = !render.flipX;
         }
     }
 }

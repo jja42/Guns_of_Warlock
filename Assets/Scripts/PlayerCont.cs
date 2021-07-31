@@ -110,24 +110,78 @@ public class PlayerCont : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    shot_timer = .25f;
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(shoot);
-                    GameObject shot = Instantiate(Fireball);
-                    SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
-                    Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
-                    if (!render.flipX)
+                    if (Data_Manager.instance.Flags[5])
                     {
-                        shot_rigid.AddForce(new Vector2(500, 0));
-                        shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y, -.1f);
+                        shot_timer = .25f;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(shoot);
+                        GameObject shot = Instantiate(Fireball);
+                        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
+                        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+                        if (!render.flipX)
+                        {
+                            shot_rigid.AddForce(new Vector2(500, 0));
+                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                        }
+                        else
+                        {
+                            renderer.flipX = true;
+                            shot_rigid.AddForce(new Vector2(-500, 0));
+                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                        }
+                        Destroy(shot, 2);
+                        shot = Instantiate(Fireball);
+                        renderer = shot.GetComponent<SpriteRenderer>();
+                        shot_rigid = shot.GetComponent<Rigidbody2D>();
+                        if (!render.flipX)
+                        {
+                            shot_rigid.AddForce(new Vector2(500, 100));
+                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                        }
+                        else
+                        {
+                            renderer.flipX = true;
+                            shot_rigid.AddForce(new Vector2(-500, 100));
+                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                        }
+                        Destroy(shot, 2);
+                        shot = Instantiate(Fireball);
+                        renderer = shot.GetComponent<SpriteRenderer>();
+                        shot_rigid = shot.GetComponent<Rigidbody2D>();
+                        if (!render.flipX)
+                        {
+                            shot_rigid.AddForce(new Vector2(500, 50));
+                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                        }
+                        else
+                        {
+                            renderer.flipX = true;
+                            shot_rigid.AddForce(new Vector2(-500, 50));
+                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                        }
+                        Destroy(shot, 2);
                     }
                     else
                     {
-                        renderer.flipX = true;
-                        shot_rigid.AddForce(new Vector2(-500, 0));
-                        shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
+                        shot_timer = .25f;
+                        audioSource.Stop();
+                        audioSource.PlayOneShot(shoot);
+                        GameObject shot = Instantiate(Fireball);
+                        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
+                        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+                        if (!render.flipX)
+                        {
+                            shot_rigid.AddForce(new Vector2(500, 0));
+                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                        }
+                        else
+                        {
+                            renderer.flipX = true;
+                            shot_rigid.AddForce(new Vector2(-500, 0));
+                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                        }
+                        Destroy(shot, 2);
                     }
-                    Destroy(shot, 2);
                 }
             }
             else
@@ -288,15 +342,18 @@ public class PlayerCont : MonoBehaviour
             audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.CompareTag("Juice"))
-        {
-
-        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Platform")){
             transform.parent = null;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Juice") && !Data_Manager.instance.Flags[7])
+        {
+            Game_Manager.instance.player_health -= 1;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -328,8 +385,13 @@ public class PlayerCont : MonoBehaviour
         Game_Manager.instance.player_health = 3;
         if (Game_Manager.instance.Greg)
         {
+            boxCollider.enabled = false;
+            render.enabled = false;
             audioSource.PlayOneShot(hurt[10]);
             Game_Manager.instance.Greg = false;
+            yield return new WaitForSeconds(hurt[10].length/2);
+            Game_Manager.instance.LoadScene(5);
+            yield return new WaitForSeconds(2);
         }
         else
         {

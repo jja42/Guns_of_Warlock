@@ -5,7 +5,6 @@ using UnityEngine;
 public class MotherTrucker : Enemy
 {
     public GameObject projectilePrefab;
-    public AudioClip shoot;
     float jumpforce = 8;
     public float jump_timer;
 
@@ -60,7 +59,6 @@ public class MotherTrucker : Enemy
     {
         GameObject shot = Instantiate(projectilePrefab);
         Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
-        audioSource.PlayOneShot(shoot);
         shot_rigid.AddForce(new Vector2(500, 0));
         shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
         Destroy(shot, 2);

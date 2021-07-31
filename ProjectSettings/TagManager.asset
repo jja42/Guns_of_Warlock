@@ -12,6 +12,8 @@ TagManager:
   - Spikes
   - Inventory
   - BossBlocks
+  - Juice
+  - Popup
   layers:
   - Default
   - TransparentFX

@@ -103,8 +103,11 @@ public class Suzanne : Enemy
     {
         if (active)
         {
-            animator.SetBool("Shooting", false);
-            animator.SetBool("Moving", true);
+            if (attack_timer > .5f)
+            {
+                animator.SetBool("Shooting", false);
+                animator.SetBool("Moving", true);
+            }
             if (transform.position.x < targetpos.x)
             {
                 transform.position += Vector3.right * Time.deltaTime * movespeed;
@@ -183,6 +186,8 @@ public class Suzanne : Enemy
         music.clip = level_music;
         music.Play();
         Blocks.SetActive(false);
+        Data_Manager.instance.Flags[1] = true;
+        Game_Manager.instance.ActivatePopup();
         base.OnDeath();
     }
 
