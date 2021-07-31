@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallSwampMuffin : Enemy
+public class LargeSwampMuffin : Enemy
 {
     public GameObject projectilePrefab;
     public float x_offset;
@@ -37,6 +37,7 @@ public class SmallSwampMuffin : Enemy
         movespeed = 2.0f;
         death_timer = .25f;
         attack_timer = .25f;
+        health = 6;
         aggro = true;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
         playerdetectdist = 8;
@@ -75,34 +76,44 @@ public class SmallSwampMuffin : Enemy
     protected void Shoot()
     {
         GameObject shot = Instantiate(projectilePrefab);
-        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
         Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
         audioSource.PlayOneShot(shoot);
         if (!render.flipX)
         {
             shot_rigid.AddForce(new Vector2(500, 0));
-            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y, -.1f);
+            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
         }
         else
         {
-            renderer.flipX = true;
             shot_rigid.AddForce(new Vector2(-500, 0));
-            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
+            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
         }
         Destroy(shot, 2);
         shot = Instantiate(projectilePrefab);
-        renderer = shot.GetComponent<SpriteRenderer>();
         shot_rigid = shot.GetComponent<Rigidbody2D>();
         if (!render.flipX)
         {
             shot_rigid.AddForce(new Vector2(500, 200));
-            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y, -.1f);
+            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
         }
         else
         {
-            renderer.flipX = true;
             shot_rigid.AddForce(new Vector2(-500, 200));
-            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y, -.1f);
+            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+        }
+        Destroy(shot, 2);
+        attack_timer = 1f;
+        shot = Instantiate(projectilePrefab);
+        shot_rigid = shot.GetComponent<Rigidbody2D>();
+        if (!render.flipX)
+        {
+            shot_rigid.AddForce(new Vector2(500, 100));
+            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+        }
+        else
+        {
+            shot_rigid.AddForce(new Vector2(-500, 100));
+            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
         }
         Destroy(shot, 2);
         attack_timer = 1f;

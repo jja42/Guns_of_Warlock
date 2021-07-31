@@ -19,7 +19,6 @@ public class PlayerCont : MonoBehaviour
     public GameObject Fireball;
     private float shot_timer;
     public float invincibility_timer;
-    public Slider health_bar;
     private SpriteRenderer render;
     private AudioSource audioSource;
     public AudioClip jump;
@@ -211,7 +210,7 @@ public class PlayerCont : MonoBehaviour
                     {
                         coin.SetActive(true);
                         q_mark.SetActive(false);
-                        coin.transform.position = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z);
+                        coin.transform.position = new Vector3(npc.transform.position.x + .35f, npc.transform.position.y + 1, npc.transform.position.z);
                     }
                 }
             }

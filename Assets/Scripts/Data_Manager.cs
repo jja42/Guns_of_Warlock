@@ -9,9 +9,24 @@ public class Data_Manager : MonoBehaviour
     public static Data_Manager instance;
     public Data data;
     readonly string datafile = "save.sav";
+    public bool[] Flags = new bool[10];
+    //0 Suzanne Defeated
+    //1 Linda Defeated
+    //2 Debbie Defeated
+    //3 Died to Greg
+    //4 Magic Updgrade
+    //5 Shotgun
+    //6 Invis
+    //7 Juice Suit
+    //8
+    //9
     // Update is called once per frame
     private void Start()
     {
+        for(int i = 0; i < Flags.Length; i++)
+        {
+            Flags[i] = false;
+        }
     }
     void Awake()
     {

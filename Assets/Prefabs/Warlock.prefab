@@ -132,7 +132,6 @@ MonoBehaviour:
   grounded: 0
   Fireball: {fileID: 6805774430163475192, guid: dfc848459cf36e04289ca3541ef99b9b, type: 3}
   invincibility_timer: 0
-  health_bar: {fileID: 0}
   jump: {fileID: 8300000, guid: 31ff1b21dbeaf8f4eb29766ccd81cf0a, type: 3}
   shoot: {fileID: 8300000, guid: 0ee8704926d9c6c4a97a0f86b8626b61, type: 3}
   death: {fileID: 8300000, guid: 8c58aa07b3fac5142accc74f7dd2b039, type: 3}
