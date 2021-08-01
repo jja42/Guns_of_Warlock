@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     AudioSource audioSource;
     public AudioClip coin_sfx;
     public AudioClip slurp_sfx;
+    public AudioClip victory_theme;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -116,6 +117,10 @@ public class Inventory : MonoBehaviour
     public void SlurpSound()
     {
         audioSource.PlayOneShot(slurp_sfx);
+    }
+    public void Victory()
+    {
+        audioSource.PlayOneShot(victory_theme);
     }
     void ReloadInventory()
     {

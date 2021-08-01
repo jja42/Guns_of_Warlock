@@ -25,7 +25,6 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 targetpos;
     protected SpriteRenderer render;
     public Material flashMaterial;
-    protected float drop_chance;
     public GameObject coin;
     float flash_duration;
     Material OG_Material;
@@ -52,7 +51,6 @@ public abstract class Enemy : MonoBehaviour
         OG_Material = render.material;
         flash_duration = .25f;
         flashing = false;
-        drop_chance = .75f;
     }
 
     // Update is called once per frame
@@ -134,14 +132,11 @@ public abstract class Enemy : MonoBehaviour
     {
         boxCollider.enabled = false;
         render.enabled = false;
-        float drop = Random.Range(0f, 1f);
-        if (death_timer <= 0) { 
-            if(drop < drop_chance)
-            {
-                GameObject obj = Instantiate(coin);
-                obj.transform.position = transform.position + new Vector3(0,.1f);
-            }
-            Destroy(gameObject); 
+        if (death_timer <= 0)
+        {
+            GameObject obj = Instantiate(coin);
+            obj.transform.position = transform.position + new Vector3(0, .1f);
+            Destroy(gameObject);
         }
         else
         {

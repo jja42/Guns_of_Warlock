@@ -106,6 +106,10 @@ public class Game_Manager : MonoBehaviour
     public void ActivatePopup()
     {
         StartCoroutine(UI_Manager.instance.ActivatePopup());
+        if (Data_Manager.instance.Flags[2])
+        {
+            StartCoroutine(FadetoBlack());
+        }
     }
     public bool CanGetPosition()
     {
@@ -126,5 +130,13 @@ public class Game_Manager : MonoBehaviour
     {
         if(player != null)
             Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex] = player.transform.position;
+    }
+    IEnumerator FadetoBlack()
+    {
+        UI_Manager.instance.FadeBlack();
+        Inventory.instance.Victory();
+        yield return new WaitForSeconds(5);
+        LoadScene(11);
+        Destroy(gameObject);
     }
 }

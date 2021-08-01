@@ -23467,11 +23467,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 204.91
       objectReference: {fileID: 0}
     - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 522349112252325114, guid: fa4a4ce1bc994d44c8f0157a60367a6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -80472,10 +80472,6 @@ PrefabInstance:
       propertyPath: Item_Tooltip
       value: 
       objectReference: {fileID: 1276738443}
-    - target: {fileID: 4430935166654665660, guid: 115999190b06c76428643497e76393a5, type: 3}
-      propertyPath: player_health
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 4430935166654665661, guid: 115999190b06c76428643497e76393a5, type: 3}
       propertyPath: m_RootOrder
       value: 11
