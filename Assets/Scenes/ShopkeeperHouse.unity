@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1662971682531229004, guid: 0de87ca811f1cb745aa3071f9dfb136b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1662971682531229004, guid: 0de87ca811f1cb745aa3071f9dfb136b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1627,6 +1627,7 @@ MonoBehaviour:
   player_lives: {fileID: 8413407349220558291}
   Inventory: {fileID: 7819828478251578167}
   Popup: {fileID: 7214012332634835174}
+  Fade: {fileID: 0}
 --- !u!224 &8413407347363558233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1639,13 +1640,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 5995360953095993746}
-  - {fileID: 8413407348041167310}
+  - {fileID: 1129083484}
   - {fileID: 8413407348504204638}
+  - {fileID: 8413407348041167310}
   - {fileID: 8413407349150610129}
   - {fileID: 8413407348442281281}
   - {fileID: 8413407348436018180}
   - {fileID: 9011540735016929518}
-  - {fileID: 1129083484}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1726,7 +1727,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8413407347363558233}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1763,7 +1764,7 @@ RectTransform:
   m_Children:
   - {fileID: 8413407349220558124}
   m_Father: {fileID: 8413407347363558233}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1868,7 +1869,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8413407347363558233}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2031,7 +2032,7 @@ RectTransform:
   m_Children:
   - {fileID: 8413407349400616241}
   m_Father: {fileID: 8413407347363558233}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2230,7 +2231,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8413407347363558233}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

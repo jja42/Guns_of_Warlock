@@ -62281,6 +62281,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 448680120876140151, guid: a24f9b318309fc54588c205f5d4c8d85, type: 3}
+      propertyPath: m_Text
+      value: 'Linda Defeated!
+
+        Suit Unlocked At Shop!'
+      objectReference: {fileID: 0}
     - target: {fileID: 1649782734377369028, guid: a24f9b318309fc54588c205f5d4c8d85, type: 3}
       propertyPath: m_Name
       value: Canvas
