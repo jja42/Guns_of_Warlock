@@ -135,8 +135,8 @@ public class PlayerCont : MonoBehaviour
                 rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
             }
 
-            //Shooting
-            if (shot_timer <= 0)
+                //Shooting
+                if (shot_timer <= 0)
             {
                 if (Input.GetKeyDown(KeyCode.X))
                 {
@@ -374,7 +374,7 @@ public class PlayerCont : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Coin"))
         {
-            Game_Manager.instance.money += 10;
+            Game_Manager.instance.money += 20;
             audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
         }

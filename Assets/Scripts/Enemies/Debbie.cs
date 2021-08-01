@@ -64,7 +64,7 @@ public class Debbie : Enemy
     {
         if (Data_Manager.instance.Flags[2])
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         if (!active && !reset)
         {
@@ -230,12 +230,16 @@ public class Debbie : Enemy
     protected override void OnDeath()
     {
         music.Stop();
-        audioSource.pitch = .5f;
+        audioSource.pitch = .75f;
         audioSource.PlayOneShot(impact);
         Blocks.SetActive(false);
         Data_Manager.instance.Flags[2] = true;
         Game_Manager.instance.ActivatePopup();
-        base.OnDeath();
+        boxCollider.enabled = false;
+        render.enabled = false;
+        active = false;
+        health = 1;
+        //base.OnDeath();
     }
 
     protected override void TakeDamage(int damage)
