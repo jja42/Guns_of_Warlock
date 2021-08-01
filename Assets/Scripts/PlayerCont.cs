@@ -131,7 +131,7 @@ public class PlayerCont : MonoBehaviour
                 }
             }
 
-            if (rigidbody2d.velocity.y < 0 && rigidbody2d.velocity.y > -20) { //if falling, fall faster, to an extent
+            if (rigidbody2d.velocity.y < 0 && rigidbody2d.velocity.y > -10) { //if falling, fall faster, to an extent
                 rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
             }
 
