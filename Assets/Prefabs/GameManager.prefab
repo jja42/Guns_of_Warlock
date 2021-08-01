@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4430935166654665663}
   - component: {fileID: 4430935166654665648}
   - component: {fileID: 3648834424325258187}
+  - component: {fileID: 7281915888602403413}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -175,3 +176,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7281915888602403413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430935166654665659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a526a032992fe4989b2ebf92dc9b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    player:
+      x: 0
+      y: 0
+      z: 0
+    entities: []
+    health: 5
+    saved: 0
+    flags: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  Flags: 00000000000000000000
+  Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
