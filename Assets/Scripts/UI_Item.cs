@@ -67,39 +67,39 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                     }
                     else
                     {
-                        if (item.name.Equals("Shotgun"))
+                        if (item.count == 1)
                         {
-                            Data_Manager.instance.Flags[5] = true;
-                            Inventory.instance.ReplaceItem(item.name, 0);
-                        }
-                        if (item.name.Equals("Water Bolt"))
-                        {
-                            Data_Manager.instance.Flags[4] = true;
-                            Inventory.instance.ReplaceItem(item.name, 1);
-                        }
-                        if (item.name.Equals("Fireball"))
-                        {
-                            Data_Manager.instance.Flags[8] = true;
-                            Inventory.instance.ReplaceItem(item.name, 1);
-                        }
-                        if(item.name.Equals("Ring of Game Mechanic Progression"))
-                        {
-                            Data_Manager.instance.Flags[9] = true;
-                            Inventory.instance.GiveItem(item.name,true);
-                        }
-                        if (item.name.Equals("Juicy Anti-Anti-Warlock Juice Suit"))
-                        {
-                            Data_Manager.instance.Flags[7] = true;
-                            Inventory.instance.GiveItem(item.name, true);
+                            if (item.name.Equals("Shotgun"))
+                            {
+                                Data_Manager.instance.Flags[5] = true;
+                                Inventory.instance.ReplaceItem(item.name, 0);
+                            }
+                            if (item.name.Equals("Water Bolt"))
+                            {
+                                Data_Manager.instance.Flags[4] = true;
+                                Inventory.instance.ReplaceItem(item.name, 1);
+                            }
+                            if (item.name.Equals("Fireball"))
+                            {
+                                Data_Manager.instance.Flags[8] = true;
+                                Inventory.instance.ReplaceItem(item.name, 1);
+                            }
+                            if (item.name.Equals("Ring of Game Mechanic Progression"))
+                            {
+                                Data_Manager.instance.Flags[9] = true;
+                                Inventory.instance.GiveItem(item.name, true);
+                            }
+                            if (item.name.Equals("Juicy Anti-Anti-Warlock Juice Suit"))
+                            {
+                                Data_Manager.instance.Flags[7] = true;
+                                Inventory.instance.GiveItem(item.name, true);
+                            }
+                            Game_Manager.instance.RemoveShopItem(item);
                         }
                         else
                         {
                             Inventory.instance.GiveItem(item.name, false);
                         }
-                    }
-                    if (item.count == 1)
-                    {
-                        Game_Manager.instance.RemoveShopItem(item);
                     }
                     Inventory.instance.TradeSound();
                 }
