@@ -347,6 +347,10 @@ public class PlayerCont : MonoBehaviour
             audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Checkpoint"))
+        {
+            startpos = collision.gameObject.transform.position + Vector3.up;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -87,9 +87,14 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                             Data_Manager.instance.Flags[9] = true;
                             Inventory.instance.GiveItem(item.name,true);
                         }
+                        if (item.name.Equals("Juicy Anti-Anti-Warlock Juice Suit"))
+                        {
+                            Data_Manager.instance.Flags[7] = true;
+                            Inventory.instance.GiveItem(item.name, true);
+                        }
                         else
                         {
-                            Inventory.instance.GiveItem(item.name,false);
+                            Inventory.instance.GiveItem(item.name, false);
                         }
                     }
                     if (item.count == 1)

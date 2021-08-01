@@ -49,6 +49,10 @@ public class Game_Manager : MonoBehaviour
         {
             shop = FindObjectOfType<Shop>();
         }
+        else
+        {
+            shopping = false;
+        }
         if(player == null)
         {
             player = FindObjectOfType<PlayerCont>();

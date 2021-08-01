@@ -95,15 +95,9 @@ public class Inventory : MonoBehaviour
         Item item = CheckForItem(itemName);
         if (item != null)
         {
-            if (item.count > 1)
-            {
                 item.count -= 1;
-            }
-            else
-            {
                 characterItems.Remove(item);
                 inventoryUI.RemoveItem(index);
-            }
         }
     }
     public void RemoveItem(string itemName)

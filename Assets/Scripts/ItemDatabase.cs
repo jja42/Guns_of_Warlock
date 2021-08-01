@@ -26,7 +26,8 @@ public class ItemDatabase : MonoBehaviour
             new Item(4,"Shotgun","A powerful firearm, suitable only for the best warlocks.",240,1,1,1),
             new Item(5, "Water Bolt", "A mid level spell. This'll leave a mark.",120,1,1,1),
             new Item(6, "Fireball", "A high level spell. It packs some heat. Experienced Warlocks Only.",120,1,1,1),
-            new Item(7, "Large Health Potion","Restores two Hearts. Part of a balanced breakfast.",20,1,0,2)
+            new Item(7, "Large Health Potion","Restores two Hearts. Part of a balanced breakfast.",20,1,0,2),
+            new Item(8, "Juicy Anti-Anti-Warlock Juice Suit", "Protects you from juice and keeps you stylish.",180,1,1,1)
         };
     }
 }

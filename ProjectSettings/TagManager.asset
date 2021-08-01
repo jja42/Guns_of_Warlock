@@ -15,6 +15,7 @@ TagManager:
   - Juice
   - Popup
   - Greg
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
