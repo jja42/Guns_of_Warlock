@@ -16,7 +16,8 @@ public class Game_Manager : MonoBehaviour
     Shop shop;
     PlayerCont player;
     GameObject Greg_NPC;
-    float invisible;
+    float invisible_timer;
+    public bool invisible;
     // Start is called before the first frame update
     void Awake()
     {
