@@ -109,7 +109,6 @@ public class Game_Manager : MonoBehaviour
     }
     public bool CanGetPosition()
     {
-        print(SceneManager.GetActiveScene().buildIndex);
         if (Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex] != Vector3.zero)
         {
             return true;

@@ -145,6 +145,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        print("L");
         if (item != null)
         {
             Item_Tooltip.enabled = true;

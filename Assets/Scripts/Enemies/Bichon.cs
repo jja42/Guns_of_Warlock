@@ -42,6 +42,7 @@ public class Bichon : Enemy
     protected override void Start()
     {
         base.Start();
+        health = 6;
         movetimer_og = 1;
         movetimer = .1f;
         movespeed = 3.0f;

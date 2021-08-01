@@ -723,7 +723,7 @@ MonoBehaviour:
   health: {fileID: 1649782733317520337}
   player_lives: {fileID: 1649782733009144642}
   Inventory: {fileID: 1054622271211945382}
-  Popup: {fileID: 0}
+  Popup: {fileID: 448680120876140151}
 --- !u!1 &6591440703890306438
 GameObject:
   m_ObjectHideFlags: 0

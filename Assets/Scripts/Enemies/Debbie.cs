@@ -229,8 +229,9 @@ public class Debbie : Enemy
     }
     protected override void OnDeath()
     {
-        music.clip = level_music;
-        music.Play();
+        music.Stop();
+        audioSource.pitch = .5f;
+        audioSource.PlayOneShot(impact);
         Blocks.SetActive(false);
         Data_Manager.instance.Flags[2] = true;
         Game_Manager.instance.ActivatePopup();
