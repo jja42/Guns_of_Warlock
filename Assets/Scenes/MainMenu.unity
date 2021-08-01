@@ -355,7 +355,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.25
+    m_LineSpacing: 1
   m_Text: 'Movement: Arrow Keys/A&D
 
     Jump: z
@@ -367,7 +367,10 @@ MonoBehaviour:
 
     Pause: Escape
 
-    Inventory: I'
+    Inventory: I
+
+    Respawn/Unstuck:
+    B'
 --- !u!222 &119034524
 CanvasRenderer:
   m_ObjectHideFlags: 0

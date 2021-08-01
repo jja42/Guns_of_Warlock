@@ -76,6 +76,10 @@ public class PlayerCont : MonoBehaviour
         }
         if (!Game_Manager.instance.paused && !dead)
         {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+               StartCoroutine(Respawn());
+            }
             if (Game_Manager.instance.invisible)
             {
                 invincibility_timer = 2;
