@@ -25,18 +25,6 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
     }
     void Update()
     {
-        if (item != null)
-        {
-            if (item.count > 1)
-            {
-                stack_text.gameObject.SetActive(true);
-                stack_text.text = item.count.ToString();
-            }
-            else
-            {
-                stack_text.gameObject.SetActive(false);
-            }
-        }
     }
     public void UpdateItem(Item Item)
     {
@@ -61,13 +49,13 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                 if (Game_Manager.instance.money >= item.cost && Inventory.instance.characterItems.Count < 8)
                 {
                     Game_Manager.instance.money -= item.cost;
-                    if (Inventory.instance.CheckStackable(item.name) != null)
-                    {
-                        Inventory.instance.StackItem(item.name);
-                    }
-                    else
-                    {
-                        if (item.count == 1)
+                    //if (Inventory.instance.CheckStackable(item.name) != null)
+                    //{
+                    //    Inventory.instance.StackItem(item.name);
+                    //}
+                    //else
+                    //{
+                    if (item.count == 1)
                         {
                             if (item.name.Equals("Shotgun"))
                             {
@@ -102,7 +90,7 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
                         }
                     }
                     Inventory.instance.TradeSound();
-                }
+                //}
             }
             else
             {
