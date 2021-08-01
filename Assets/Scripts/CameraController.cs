@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
+    public static CameraController instance;
     public float rightLimit;
     public float leftLimit;
     public float upwardLimit; //should be 0 by default
@@ -10,6 +11,7 @@ public class CameraController : MonoBehaviour {
     bool init;
 
     void Start() {
+        instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         transform.position = new Vector3(leftLimit, 0, -10);
     }

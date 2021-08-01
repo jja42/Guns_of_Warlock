@@ -446,6 +446,7 @@ public class PlayerCont : MonoBehaviour
         boxCollider.enabled = true;
         render.enabled = true;
         transform.position = startpos;
+        CameraController.instance.gameObject.transform.position = new Vector3(transform.position.x, 0, -10);
         rigidbody2d.velocity = Vector2.zero;
         dead = false;
     }
