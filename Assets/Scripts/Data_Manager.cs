@@ -19,7 +19,7 @@ public class Data_Manager : MonoBehaviour
     //6 Invis
     //7 Juice Suit
     //8 Magic Updgrade 2
-    //9
+    //9 Double Jump
     // Update is called once per frame
     private void Start()
     {

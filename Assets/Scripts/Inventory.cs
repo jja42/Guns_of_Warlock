@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     bool init;
     AudioSource audioSource;
     public AudioClip coin_sfx;
+    public AudioClip slurp_sfx;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -39,8 +40,8 @@ public class Inventory : MonoBehaviour
         }
         if (!init)
         {
-            GiveItem("Gun");
-            GiveItem("Fireball");
+            GiveItem("Gun",true);
+            GiveItem("Acid Shot",true);
             init = true;
         }
         if (Input.GetKeyDown(KeyCode.I))
@@ -48,15 +49,31 @@ public class Inventory : MonoBehaviour
             inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
         }
     }
-    public void GiveItem(string itemName)
+    public void GiveItem(string itemName, bool iskeyitem)
     {
         Item itemToAdd = new Item(ItemDatabase.instance.GetItem(itemName));
         itemToAdd.owner = 0;
         itemToAdd.count = 1;
+        if (iskeyitem)
+        {
+            itemToAdd.cost = 0;
+        }
         characterItems.Add(itemToAdd);
         bool state = inventoryUI.gameObject.activeSelf;
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.AddNewItem(itemToAdd);
+        inventoryUI.gameObject.SetActive(state);
+    }
+    public void ReplaceItem(string itemName, int index)
+    {
+        Item itemToAdd = new Item(ItemDatabase.instance.GetItem(itemName));
+        itemToAdd.owner = 0;
+        itemToAdd.count = 1;
+        itemToAdd.cost = 0;
+        characterItems[index] = itemToAdd;
+        bool state = inventoryUI.gameObject.activeSelf;
+        inventoryUI.gameObject.SetActive(true);
+        inventoryUI.UpdateSlot(index,itemToAdd);
         inventoryUI.gameObject.SetActive(state);
     }
     public int StackItem(string itemName)
@@ -98,9 +115,13 @@ public class Inventory : MonoBehaviour
             inventoryUI.RemoveItem(item);
         }
     }
-    public void CoinSound()
+    public void TradeSound()
     {
         audioSource.PlayOneShot(coin_sfx);
+    }
+    public void SlurpSound()
+    {
+        audioSource.PlayOneShot(slurp_sfx);
     }
     void ReloadInventory()
     {

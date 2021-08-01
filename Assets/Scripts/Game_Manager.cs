@@ -11,11 +11,12 @@ public class Game_Manager : MonoBehaviour
     public bool shopping;
     public int player_health;
     int max_player_health;
-    public bool double_jump;
     public int player_lives;
     public bool Greg;
     Shop shop;
     PlayerCont player;
+    GameObject Greg_NPC;
+    float invisible;
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +39,7 @@ public class Game_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player_health = Mathf.Clamp(player_health,0, 3);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = !paused;
@@ -49,6 +51,13 @@ public class Game_Manager : MonoBehaviour
         if(player == null)
         {
             player = FindObjectOfType<PlayerCont>();
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GregShack")){
+            Greg_NPC = GameObject.FindGameObjectWithTag("Greg");
+            if (Data_Manager.instance.Flags[3])
+            {
+                Greg_NPC.name = "Greg2";
+            }
         }
         UI_Manager.instance.money_text.text = money.ToString();
         UI_Manager.instance.health.fillAmount = (float)player_health / max_player_health;
@@ -72,6 +81,7 @@ public class Game_Manager : MonoBehaviour
     public void KillPlayer()
     {
         player.StartCoroutine(player.Respawn());
+        Data_Manager.instance.Flags[3] = true;
     }
     public void ActivatePopup()
     {

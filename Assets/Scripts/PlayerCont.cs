@@ -29,6 +29,7 @@ public class PlayerCont : MonoBehaviour
     private GameObject npc;
     public GameObject q_mark;
     public GameObject coin;
+    public AnimatorOverrideController shotty_animator;
     Vector3 startpos;
     bool dead;
     void Start()
@@ -54,6 +55,10 @@ public class PlayerCont : MonoBehaviour
     {
         if (!Game_Manager.instance.paused && !dead)
         {
+            if (Data_Manager.instance.Flags[5])
+            {
+                animator.runtimeAnimatorController = shotty_animator;
+            }
             if(Game_Manager.instance.player_health <= 0 || transform.position.y < -10)
             {
                 StartCoroutine(Respawn());
@@ -92,7 +97,7 @@ public class PlayerCont : MonoBehaviour
                     audioSource.PlayOneShot(jump);
                     rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpforce);
                 }
-                if(!grounded && db_jump && Game_Manager.instance.double_jump)
+                if(!grounded && db_jump && Data_Manager.instance.Flags[9])
                 { 
                     audioSource.Stop();
                     audioSource.PlayOneShot(jump);

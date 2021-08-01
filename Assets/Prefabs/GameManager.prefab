@@ -51,7 +51,6 @@ MonoBehaviour:
   money: 0
   shopping: 0
   player_health: 0
-  double_jump: 0
   player_lives: 0
   Greg: 0
 --- !u!114 &4430935166654665663
@@ -67,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin_sfx: {fileID: 8300000, guid: ca003969be566334d9f5dbc6ab41ae0e, type: 3}
+  slurp_sfx: {fileID: 8300000, guid: 0f350af31938f7b47992161f92e72e39, type: 3}
 --- !u!114 &4430935166654665648
 MonoBehaviour:
   m_ObjectHideFlags: 0

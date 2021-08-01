@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b4413ac91dce8a745979f2df40627486, type: 3}
   q_mark: {fileID: 77202856961869185, guid: 4b121478b21918248a41f7f6f7273424, type: 3}
   coin: {fileID: 5722489286697894595, guid: 0244c10f9cefd784e8995f4010b5ed99, type: 3}
+  shotty_animator: {fileID: 22100000, guid: df6bbe197d4a31f4ab6f92d811a52df2, type: 2}
 --- !u!95 &9106070821466080770
 Animator:
   serializedVersion: 3

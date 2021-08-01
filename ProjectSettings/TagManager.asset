@@ -14,6 +14,7 @@ TagManager:
   - BossBlocks
   - Juice
   - Popup
+  - Greg
   layers:
   - Default
   - TransparentFX

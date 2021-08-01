@@ -21,8 +21,25 @@ public class Shop : MonoBehaviour
     }
     private void Start()
     {
-        GiveItem("Invisibility Potion");
         GiveItem("Small Health Potion");
+        GiveItem("Large Health Potion");
+        GiveItem("Invisibility Potion");
+        if (Data_Manager.instance.Flags[0] && !Data_Manager.instance.Flags[5])
+        {
+            GiveItem("Shotgun");
+        }
+        if (Data_Manager.instance.Flags[0] && !Data_Manager.instance.Flags[9])
+        {
+            GiveItem("Ring of Game Mechanic Progression");
+        }
+        if (Data_Manager.instance.Flags[0] && !Data_Manager.instance.Flags[4])
+        {
+            GiveItem("Water Bolt");
+        }
+        if (Data_Manager.instance.Flags[1] && Data_Manager.instance.Flags[4] && !Data_Manager.instance.Flags[8])
+        {
+            GiveItem("Fireball");
+        }
     }
     public void GiveItem(string itemName)
     {

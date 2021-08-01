@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour
         if ((string)story.variablesState["giveitem"] != null)
         {
             string item = (string)story.variablesState["giveitem"];
-            Inventory.instance.GiveItem(item);
+            Inventory.instance.GiveItem(item,true);
         }
         if ((string)story.variablesState["removeitem"] != null)
         {

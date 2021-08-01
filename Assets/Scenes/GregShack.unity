@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4430935166654665663, guid: 115999190b06c76428643497e76393a5, type: 3}
+      propertyPath: slurp_sfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f350af31938f7b47992161f92e72e39, type: 3}
     m_RemovedComponents:
     - {fileID: 3648834424325258187, guid: 115999190b06c76428643497e76393a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 115999190b06c76428643497e76393a5, type: 3}
@@ -666,7 +670,7 @@ GameObject:
   - component: {fileID: 881292013}
   m_Layer: 9
   m_Name: Greg
-  m_TagString: Untagged
+  m_TagString: Greg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
