@@ -40,6 +40,10 @@ public class Shop : MonoBehaviour
         {
             GiveItem("Fireball");
         }
+        if (Data_Manager.instance.Flags[1] && !Data_Manager.instance.Flags[7])
+        {
+            GiveItem("Juicy Anti-Anti-Warlock Juice Suit");
+        }
     }
     public void GiveItem(string itemName)
     {

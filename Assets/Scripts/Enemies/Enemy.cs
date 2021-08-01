@@ -170,9 +170,7 @@ public abstract class Enemy : MonoBehaviour
     }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            if (collision.gameObject.name.Contains("Fireball") && !flashing)
+            if (collision.gameObject.CompareTag("PlayerPorjectile") && !flashing)
             {
                 if (Data_Manager.instance.Flags[4] && Data_Manager.instance.Flags[8])
                 {
@@ -190,7 +188,6 @@ public abstract class Enemy : MonoBehaviour
                     }
                 }
                 Destroy(collision.gameObject);
-            }
         }
 
     }

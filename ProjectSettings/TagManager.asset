@@ -16,6 +16,7 @@ TagManager:
   - Popup
   - Greg
   - Checkpoint
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX

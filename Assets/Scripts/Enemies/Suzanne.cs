@@ -186,7 +186,7 @@ public class Suzanne : Enemy
         music.clip = level_music;
         music.Play();
         Blocks.SetActive(false);
-        Data_Manager.instance.Flags[1] = true;
+        Data_Manager.instance.Flags[0] = true;
         Game_Manager.instance.ActivatePopup();
         base.OnDeath();
     }

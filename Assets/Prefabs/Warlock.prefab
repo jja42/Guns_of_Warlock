@@ -130,7 +130,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   grounded: 0
-  Fireball: {fileID: 6805774430163475192, guid: dfc848459cf36e04289ca3541ef99b9b, type: 3}
+  AcidShot: {fileID: 6805774430163475192, guid: dfc848459cf36e04289ca3541ef99b9b, type: 3}
+  WaterBolt: {fileID: 7016300126984092245, guid: 3c1ebf4656eee8446b444df4f4407b00, type: 3}
+  Fireball: {fileID: 7148464267532911135, guid: 492052417a9af974b9471fb66d07ab55, type: 3}
   invincibility_timer: 0
   jump: {fileID: 8300000, guid: 31ff1b21dbeaf8f4eb29766ccd81cf0a, type: 3}
   shoot: {fileID: 8300000, guid: 0ee8704926d9c6c4a97a0f86b8626b61, type: 3}

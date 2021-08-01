@@ -37,7 +37,7 @@ public class LargeSwampMuffin : Enemy
         movespeed = 2.0f;
         death_timer = .25f;
         attack_timer = .25f;
-        health = 16;
+        health = 21;
         aggro = true;
         targetpos = new Vector3(start_pos.x + x_offset, start_pos.y + y_offset);
         playerdetectdist = 8;

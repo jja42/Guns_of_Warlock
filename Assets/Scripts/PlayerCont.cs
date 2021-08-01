@@ -16,7 +16,10 @@ public class PlayerCont : MonoBehaviour
     public LayerMask ground_layer;
     public bool grounded;
     private Animator animator;
+    public GameObject AcidShot;
+    public GameObject WaterBolt;
     public GameObject Fireball;
+    GameObject projectile;
     private float shot_timer;
     public float invincibility_timer;
     private SpriteRenderer render;
@@ -53,6 +56,19 @@ public class PlayerCont : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!Data_Manager.instance.Flags[4])
+        {
+            projectile = AcidShot;
+        }
+        if(Data_Manager.instance.Flags[4] && !Data_Manager.instance.Flags[8])
+        {
+            projectile = WaterBolt;
+        }
+        if (Data_Manager.instance.Flags[8])
+        {
+            projectile = Fireball;
+        }
         if (!Game_Manager.instance.paused && !dead)
         {
             if (Data_Manager.instance.Flags[5])
@@ -120,7 +136,7 @@ public class PlayerCont : MonoBehaviour
                         shot_timer = .25f;
                         audioSource.Stop();
                         audioSource.PlayOneShot(shoot);
-                        GameObject shot = Instantiate(Fireball);
+                        GameObject shot = Instantiate(projectile);
                         SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
                         Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
                         if (!render.flipX)
@@ -135,7 +151,7 @@ public class PlayerCont : MonoBehaviour
                             shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
                         }
                         Destroy(shot, 2);
-                        shot = Instantiate(Fireball);
+                        shot = Instantiate(projectile);
                         renderer = shot.GetComponent<SpriteRenderer>();
                         shot_rigid = shot.GetComponent<Rigidbody2D>();
                         if (!render.flipX)
@@ -150,7 +166,7 @@ public class PlayerCont : MonoBehaviour
                             shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
                         }
                         Destroy(shot, 2);
-                        shot = Instantiate(Fireball);
+                        shot = Instantiate(projectile);
                         renderer = shot.GetComponent<SpriteRenderer>();
                         shot_rigid = shot.GetComponent<Rigidbody2D>();
                         if (!render.flipX)
@@ -171,7 +187,7 @@ public class PlayerCont : MonoBehaviour
                         shot_timer = .25f;
                         audioSource.Stop();
                         audioSource.PlayOneShot(shoot);
-                        GameObject shot = Instantiate(Fireball);
+                        GameObject shot = Instantiate(projectile);
                         SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
                         Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
                         if (!render.flipX)

@@ -10,7 +10,7 @@ public class Bahloon : Enemy
     protected override void Start()
     {
         base.Start();
-
+        health = 6;
         movetimer_og = .1f;
         movetimer = .1f;
         movespeed = 4.0f;
