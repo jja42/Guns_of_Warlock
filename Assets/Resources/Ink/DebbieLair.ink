@@ -3,5 +3,6 @@ warlock.
 + [Huh.]
 -> gottem
 ==gottem==
-Gaslight Gatekeep Girlboss - gottem
+Gaslight Gatekeep Girlboss Gottem
+- Debbie
 ->END

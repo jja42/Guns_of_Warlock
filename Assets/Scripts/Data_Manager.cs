@@ -10,7 +10,7 @@ public class Data_Manager : MonoBehaviour
     public Data data;
     readonly string datafile = "save.sav";
     public bool[] Flags = new bool[10];
-    public Vector3[] Positions = new Vector3[10];
+    public Vector3[] Positions = new Vector3[11];
     //0 Suzanne Defeated
     //1 Linda Defeated
     //2 Debbie Defeated
