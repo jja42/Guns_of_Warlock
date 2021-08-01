@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour {
     public float leftLimit;
     public float upwardLimit; //should be 0 by default
     GameObject player;
+    bool init;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -14,6 +15,11 @@ public class CameraController : MonoBehaviour {
     }
 
     void Update() {
+        if (!init)
+        {
+            transform.position = new Vector3(player.transform.position.x, 0, -10);
+            init = true;
+        }
         var playerPos = player.transform.position;
         var cameraPos = transform.position;
 

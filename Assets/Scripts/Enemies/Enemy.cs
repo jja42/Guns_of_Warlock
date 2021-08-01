@@ -103,26 +103,30 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual bool DetectPlayer()
     {
-        RaycastHit2D raycastHit;
-        if (render.flipX) raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x,boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.left, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
-        else
+        if (!Game_Manager.instance.invisible)
         {
-            raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.right, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
-        }
-        Color Raycolor;
+            RaycastHit2D raycastHit;
+            if (render.flipX) raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y / 2), Vector2.left, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
+            else
+            {
+                raycastHit = Physics2D.Raycast(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y / 2), Vector2.right, boxCollider.bounds.extents.x + playerdetectdist, player_layer);
+            }
+            Color Raycolor;
 
-        if (raycastHit.collider != null)
-        {
-            Raycolor = Color.green;
-        }
-        else
-        {
-            Raycolor = Color.red;
+            if (raycastHit.collider != null)
+            {
+                Raycolor = Color.green;
+            }
+            else
+            {
+                Raycolor = Color.red;
 
+            }
+            if (render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y / 2), Vector2.left * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
+            if (!render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y / 2), Vector2.right * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
+            return (raycastHit.collider != null);
         }
-        if (render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.left * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
-        if (!render.flipX) Debug.DrawRay(new Vector2(boxCollider.bounds.center.x, boxCollider.bounds.center.y - boxCollider.bounds.extents.y/2), Vector2.right * (boxCollider.bounds.extents.x + playerdetectdist), Raycolor);
-        return (raycastHit.collider != null);
+        return false;
     }
 
     protected abstract void AttackPlayer();

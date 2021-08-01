@@ -10,6 +10,7 @@ public class Data_Manager : MonoBehaviour
     public Data data;
     readonly string datafile = "save.sav";
     public bool[] Flags = new bool[10];
+    public Vector3[] Positions = new Vector3[10];
     //0 Suzanne Defeated
     //1 Linda Defeated
     //2 Debbie Defeated
@@ -26,6 +27,10 @@ public class Data_Manager : MonoBehaviour
         for(int i = 0; i < Flags.Length; i++)
         {
             Flags[i] = false;
+        }
+        for (int i = 0; i < Positions.Length; i++)
+        {
+            Positions[i] = Vector3.zero;
         }
     }
     void Awake()

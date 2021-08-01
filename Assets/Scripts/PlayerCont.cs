@@ -33,7 +33,7 @@ public class PlayerCont : MonoBehaviour
     public GameObject q_mark;
     public GameObject coin;
     public AnimatorOverrideController shotty_animator;
-    Vector3 startpos;
+    public Vector3 startpos;
     bool dead;
     Color col;
     void Start()
@@ -50,15 +50,18 @@ public class PlayerCont : MonoBehaviour
         invincibility_timer = 0;
         q_mark.SetActive(false);
         coin.SetActive(false);
-        db_jump = true;
         startpos = transform.position;
+        if (Game_Manager.instance.CanGetPosition())
+        {
+            transform.position = Game_Manager.instance.GetPosition();
+        }
+        db_jump = true;
         col = render.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (!Data_Manager.instance.Flags[4])
         {
             projectile = AcidShot;
@@ -264,6 +267,7 @@ public class PlayerCont : MonoBehaviour
                             {
                                 string resultString = Regex.Match(npc.name, @"\d+").Value;
                                 int scene_num = int.Parse(resultString);
+                                Game_Manager.instance.SetSpawn();
                                 Game_Manager.instance.LoadScene(scene_num);
                             }
                             else
@@ -336,18 +340,15 @@ public class PlayerCont : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            if (collision.gameObject.CompareTag("Spikes"))
+            {
+                StartCoroutine(Respawn());
+                return;
+            }
             //Enemy enemy = (Enemy)collision.gameObject.GetComponent(typeof(Enemy));
             if (invincibility_timer <= 0)
-            {
-                if (collision.gameObject.CompareTag("Spikes"))
-                {
-                    StartCoroutine(Respawn());
-                    return;
-                }
-                else
-                {
-                    Game_Manager.instance.player_health -= 1;
-                }
+            {   
+                Game_Manager.instance.player_health -= 1;
                 invincibility_timer = 1.2f;
                 if (render.flipX)
                 {
@@ -377,10 +378,6 @@ public class PlayerCont : MonoBehaviour
             audioSource.PlayOneShot(coin_collect);
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.CompareTag("Checkpoint"))
-        {
-            startpos = collision.gameObject.transform.position + Vector3.up;
-        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -393,6 +390,11 @@ public class PlayerCont : MonoBehaviour
         if (collision.gameObject.CompareTag("Juice") && !Data_Manager.instance.Flags[7])
         {
             Game_Manager.instance.player_health -= 1;
+        }
+        if (collision.gameObject.CompareTag("Checkpoint"))
+        {
+            Game_Manager.instance.SetSpawn();
+            startpos = collision.gameObject.transform.position + Vector3.up;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

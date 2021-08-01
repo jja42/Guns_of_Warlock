@@ -16,7 +16,7 @@ public class Game_Manager : MonoBehaviour
     Shop shop;
     PlayerCont player;
     GameObject Greg_NPC;
-    float invisible_timer;
+    float invisible_timer = 5;
     public bool invisible;
     // Start is called before the first frame update
     void Awake()
@@ -40,14 +40,27 @@ public class Game_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (invisible)
+        {
+            invisible_timer -= Time.deltaTime;
+        }
+        else
+        {
+            invisible_timer = 5;
+        }
+        if(invisible_timer<= 0)
+        {
+            invisible = false;
+        }
         player_health = Mathf.Clamp(player_health,0, 3);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             paused = !paused;
         }
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("ShopkeeperHouse") && shop == null)
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("ShopkeeperHouse"))
         {
-            shop = FindObjectOfType<Shop>();
+            if(shop == null)
+                shop = FindObjectOfType<Shop>();
         }
         else
         {
@@ -71,7 +84,9 @@ public class Game_Manager : MonoBehaviour
 
     public void LoadScene(int scene_index)
     {
+        paused = true;
         SceneManager.LoadScene(scene_index);
+        paused = false;
     }
 
     public void RemoveShopItem(Item item)
@@ -91,5 +106,25 @@ public class Game_Manager : MonoBehaviour
     public void ActivatePopup()
     {
         StartCoroutine(UI_Manager.instance.ActivatePopup());
+    }
+    public bool CanGetPosition()
+    {
+        if (Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex] != Vector3.zero)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public Vector3 GetPosition()
+    {
+            return Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex];
+    }
+    public void SetSpawn()
+    {
+        if(player != null)
+            Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex] = player.transform.position;
     }
 }
