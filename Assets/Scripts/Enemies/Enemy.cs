@@ -170,7 +170,7 @@ public abstract class Enemy : MonoBehaviour
     }
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-            if (collision.gameObject.CompareTag("PlayerPorjectile") && !flashing)
+            if (collision.gameObject.CompareTag("PlayerProjectile") && !flashing)
             {
                 if (Data_Manager.instance.Flags[4] && Data_Manager.instance.Flags[8])
                 {

@@ -35,6 +35,7 @@ public class PlayerCont : MonoBehaviour
     public AnimatorOverrideController shotty_animator;
     Vector3 startpos;
     bool dead;
+    Color col;
     void Start()
     {
         q_mark = Instantiate(q_mark);
@@ -51,6 +52,7 @@ public class PlayerCont : MonoBehaviour
         coin.SetActive(false);
         db_jump = true;
         startpos = transform.position;
+        col = render.color;
     }
 
     // Update is called once per frame
@@ -71,6 +73,10 @@ public class PlayerCont : MonoBehaviour
         }
         if (!Game_Manager.instance.paused && !dead)
         {
+            if (Game_Manager.instance.invisible)
+            {
+                invincibility_timer = 2;
+            }
             if (Data_Manager.instance.Flags[5])
             {
                 animator.runtimeAnimatorController = shotty_animator;
@@ -213,12 +219,20 @@ public class PlayerCont : MonoBehaviour
             //Invincibility
             if (invincibility_timer > 0)
             {
-                render.enabled = !render.enabled;
+                if (!Game_Manager.instance.invisible)
+                {
+                    render.enabled = !render.enabled;
+                }
+                else
+                {
+                    render.color = new Color(col.r, col.g, col.b, .5f);
+                }
                 invincibility_timer-= Time.deltaTime;
                 gameObject.layer = LayerMask.NameToLayer("Invulnerable");
             }
             else
             {
+                render.color = col;
                 render.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer("Player");
             }
