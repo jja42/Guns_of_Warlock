@@ -33,6 +33,8 @@ public class Game_Manager : MonoBehaviour
     }
     private void Start()
     {
+        // Limit the framerate to 30
+        Application.targetFrameRate = 30;
         player_health = 3;
         player_lives = 3;
         max_player_health = player_health;

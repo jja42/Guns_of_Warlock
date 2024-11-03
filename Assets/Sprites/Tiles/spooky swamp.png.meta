@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,8 +64,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -352,6 +353,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spooky swamp_9: 4142751139762681871
+      spooky swamp_2: 7722478664860333998
+      spooky swamp_7: -1324089453880040993
+      spooky swamp_1: -5093787167890772320
+      spooky swamp_8: 727130754690309632
+      spooky swamp_3: 912405368195358944
+      spooky swamp_6: -5662144740644000240
+      spooky swamp_0: 6405984343702553737
+      spooky swamp_5: 7059710862378632137
+      spooky swamp_4: -7892510967757277917
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
