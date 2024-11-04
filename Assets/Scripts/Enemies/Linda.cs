@@ -204,9 +204,9 @@ public class Linda : Enemy
     {
         animator.SetTrigger("Jumping");
         if (dir)
-            rigidbod.velocity = new Vector2(jumpforce, jumpforce * 2f);
+            rigidbod.linearVelocity = new Vector2(jumpforce, jumpforce * 2f);
         else
-            rigidbod.velocity = new Vector2(-jumpforce, jumpforce * 2f);
+            rigidbod.linearVelocity = new Vector2(-jumpforce, jumpforce * 2f);
         rigidbod.gravityScale = 0;
         air_timer = 5;
         in_air = true;

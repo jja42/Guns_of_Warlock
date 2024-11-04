@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerCont : MonoBehaviour
 {
-    private float x;
-    private float y;
+    float x;
     bool db_jump;
     private float walkspeed = 3.5f;
     private Rigidbody2D rigidbody2d;
@@ -76,10 +75,6 @@ public class PlayerCont : MonoBehaviour
         }
         if (!Game_Manager.instance.paused && !dead)
         {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-               StartCoroutine(Respawn());
-            }
             if (Game_Manager.instance.invisible)
             {
                 invincibility_timer = 2;
@@ -93,11 +88,12 @@ public class PlayerCont : MonoBehaviour
                 StartCoroutine(Respawn());
             }
             //health_bar.value = health;
-            x = Input.GetAxis("Horizontal");
-            y = Input.GetAxis("Vertical");
+            //x = Input.GetAxis("Horizontal");
+            //y = Input.GetAxis("Vertical");
             grounded = IsGrounded();
             if (grounded)
                 db_jump = true;
+
             // Horizontal Movement
             if (x != 0)
             {
@@ -117,108 +113,11 @@ public class PlayerCont : MonoBehaviour
                 animator.SetBool("Running", false);
             }
 
-            // Vertical Movement
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                if (grounded)
-                {
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(jump);
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpforce);
-                }
-                if(!grounded && db_jump && Data_Manager.instance.Flags[9])
-                { 
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(jump);
-                    db_jump = false;
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpforce);
-                }
+            if (rigidbody2d.linearVelocity.y < 0 && rigidbody2d.linearVelocity.y > -10) { //if falling, fall faster, to an extent
+                rigidbody2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
             }
-
-            if (rigidbody2d.velocity.y < 0 && rigidbody2d.velocity.y > -10) { //if falling, fall faster, to an extent
-                rigidbody2d.velocity += Vector2.up * Physics2D.gravity.y * (1.5f) * Time.deltaTime;
-            }
-
-                //Shooting
-                if (shot_timer <= 0)
-            {
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    if (Data_Manager.instance.Flags[5])
-                    {
-                        shot_timer = .25f;
-                        audioSource.Stop();
-                        audioSource.PlayOneShot(shoot);
-                        GameObject shot = Instantiate(projectile);
-                        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
-                        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
-                        if (!render.flipX)
-                        {
-                            shot_rigid.AddForce(new Vector2(500, 0));
-                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
-                        }
-                        else
-                        {
-                            renderer.flipX = true;
-                            shot_rigid.AddForce(new Vector2(-500, 0));
-                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
-                        }
-                        Destroy(shot, 2);
-                        shot = Instantiate(projectile);
-                        renderer = shot.GetComponent<SpriteRenderer>();
-                        shot_rigid = shot.GetComponent<Rigidbody2D>();
-                        if (!render.flipX)
-                        {
-                            shot_rigid.AddForce(new Vector2(500, 100));
-                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
-                        }
-                        else
-                        {
-                            renderer.flipX = true;
-                            shot_rigid.AddForce(new Vector2(-500, 100));
-                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
-                        }
-                        Destroy(shot, 2);
-                        shot = Instantiate(projectile);
-                        renderer = shot.GetComponent<SpriteRenderer>();
-                        shot_rigid = shot.GetComponent<Rigidbody2D>();
-                        if (!render.flipX)
-                        {
-                            shot_rigid.AddForce(new Vector2(500, 50));
-                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
-                        }
-                        else
-                        {
-                            renderer.flipX = true;
-                            shot_rigid.AddForce(new Vector2(-500, 50));
-                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
-                        }
-                        Destroy(shot, 2);
-                    }
-                    else
-                    {
-                        shot_timer = .25f;
-                        audioSource.Stop();
-                        audioSource.PlayOneShot(shoot);
-                        GameObject shot = Instantiate(projectile);
-                        SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
-                        Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
-                        if (!render.flipX)
-                        {
-                            shot_rigid.AddForce(new Vector2(500, 0));
-                            shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
-                        }
-                        else
-                        {
-                            renderer.flipX = true;
-                            shot_rigid.AddForce(new Vector2(-500, 0));
-                            shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
-                        }
-                        Destroy(shot, 2);
-                    }
-                }
-            }
-            else
+                //Shooting  
+            if(shot_timer > 0)
             {
                 shot_timer -= Time.deltaTime;
             }
@@ -244,45 +143,6 @@ public class PlayerCont : MonoBehaviour
                 gameObject.layer = LayerMask.NameToLayer("Player");
             }
             NPCFind();
-            if (Input.GetKeyDown(KeyCode.Return) && DialogueManager.instance.talking)
-            {
-                if (DialogueManager.instance.more_dialogue)
-                {
-                    DialogueManager.instance.ContinueStory();
-                }
-                else
-                {
-                    DialogueManager.instance.ExitStory();
-                }
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Return) && !DialogueManager.instance.talking)
-                {
-                    if (npc)
-                    {
-                        if (npc.CompareTag("Shop"))
-                        {
-                            Game_Manager.instance.ToggleShop();
-                        }
-                        else
-                        {
-                            if (npc.CompareTag("Exit"))
-                            {
-                                string resultString = Regex.Match(npc.name, @"\d+").Value;
-                                int scene_num = int.Parse(resultString);
-                                Game_Manager.instance.SetSpawn();
-                                Game_Manager.instance.LoadScene(scene_num);
-                            }
-                            else
-                            {
-                                DialogueManager.instance.PlayDialogue(npc.name);
-                            }
-                        }
-                    }
-                }
-            }
-            
         }
     }
     void NPCFind()
@@ -356,11 +216,11 @@ public class PlayerCont : MonoBehaviour
                 invincibility_timer = 1.2f;
                 if (render.flipX)
                 {
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x + 4, 3);
+                    rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x + 4, 3);
                 }
                 else
                 {
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x - 4, 3);
+                    rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x - 4, 3);
                 }
                 int rand_index = Random.Range(0, 10);
                 audioSource.PlayOneShot(hurt[rand_index]);
@@ -412,11 +272,11 @@ public class PlayerCont : MonoBehaviour
                 invincibility_timer = 1.2f;
                 if (render.flipX)
                 {
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x + 4, 3);
+                    rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x + 4, 3);
                 }
                 else
                 {
-                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x - 4, 3);
+                    rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x - 4, 3);
                 }
                 int rand_index = Random.Range(0, 10);
                 audioSource.PlayOneShot(hurt[rand_index]);
@@ -451,7 +311,171 @@ public class PlayerCont : MonoBehaviour
         render.enabled = true;
         transform.position = startpos;
         CameraController.instance.gameObject.transform.position = new Vector3(transform.position.x, 0, -10);
-        rigidbody2d.velocity = Vector2.zero;
+        rigidbody2d.linearVelocity = Vector2.zero;
         dead = false;
+    }
+
+    public void PlayerRespawn()
+    {
+        if (!Game_Manager.instance.paused && !dead)
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    public void PlayerMove(Vector2 value)
+    {
+        if (!Game_Manager.instance.paused && !dead)
+        {
+            x = value.x;
+        }
+    }
+
+    public void PlayerJump()
+    {
+        if (!Game_Manager.instance.paused && !dead)
+        {
+            // Vertical Movement
+            if (grounded)
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(jump);
+                rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x, jumpforce);
+            }
+            if (!grounded && db_jump && Data_Manager.instance.Flags[9])
+            {
+                audioSource.Stop();
+                audioSource.PlayOneShot(jump);
+                db_jump = false;
+                rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x, jumpforce);
+            }
+        }
+    }
+
+    public void PlayerInteract()
+    {
+        if (!Game_Manager.instance.paused && !dead)
+        {
+            if (DialogueManager.instance.talking)
+            {
+                if (DialogueManager.instance.more_dialogue)
+                {
+                    DialogueManager.instance.ContinueStory();
+                }
+                else
+                {
+                    DialogueManager.instance.ExitStory();
+                }
+            }
+            else
+            {
+                if (!DialogueManager.instance.talking)
+                {
+                    if (npc)
+                    {
+                        if (npc.CompareTag("Shop"))
+                        {
+                            Game_Manager.instance.ToggleShop();
+                        }
+                        else
+                        {
+                            if (npc.CompareTag("Exit"))
+                            {
+                                string resultString = Regex.Match(npc.name, @"\d+").Value;
+                                int scene_num = int.Parse(resultString);
+                                Game_Manager.instance.SetSpawn();
+                                Game_Manager.instance.LoadScene(scene_num);
+                            }
+                            else
+                            {
+                                DialogueManager.instance.PlayDialogue(npc.name);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void PlayerShoot()
+    {
+        if (!Game_Manager.instance.paused && !dead)
+        {
+            if (shot_timer <= 0)
+            {
+                if (Data_Manager.instance.Flags[5])
+                {
+                    shot_timer = .25f;
+                    audioSource.Stop();
+                    audioSource.PlayOneShot(shoot);
+                    GameObject shot = Instantiate(projectile);
+                    SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
+                    Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+                    if (!render.flipX)
+                    {
+                        shot_rigid.AddForce(new Vector2(500, 0));
+                        shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                    }
+                    else
+                    {
+                        renderer.flipX = true;
+                        shot_rigid.AddForce(new Vector2(-500, 0));
+                        shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                    }
+                    Destroy(shot, 2);
+                    shot = Instantiate(projectile);
+                    renderer = shot.GetComponent<SpriteRenderer>();
+                    shot_rigid = shot.GetComponent<Rigidbody2D>();
+                    if (!render.flipX)
+                    {
+                        shot_rigid.AddForce(new Vector2(500, 100));
+                        shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                    }
+                    else
+                    {
+                        renderer.flipX = true;
+                        shot_rigid.AddForce(new Vector2(-500, 100));
+                        shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                    }
+                    Destroy(shot, 2);
+                    shot = Instantiate(projectile);
+                    renderer = shot.GetComponent<SpriteRenderer>();
+                    shot_rigid = shot.GetComponent<Rigidbody2D>();
+                    if (!render.flipX)
+                    {
+                        shot_rigid.AddForce(new Vector2(500, 50));
+                        shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                    }
+                    else
+                    {
+                        renderer.flipX = true;
+                        shot_rigid.AddForce(new Vector2(-500, 50));
+                        shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                    }
+                    Destroy(shot, 2);
+                }
+                else
+                {
+                    shot_timer = .25f;
+                    audioSource.Stop();
+                    audioSource.PlayOneShot(shoot);
+                    GameObject shot = Instantiate(projectile);
+                    SpriteRenderer renderer = shot.GetComponent<SpriteRenderer>();
+                    Rigidbody2D shot_rigid = shot.GetComponent<Rigidbody2D>();
+                    if (!render.flipX)
+                    {
+                        shot_rigid.AddForce(new Vector2(500, 0));
+                        shot.transform.position = new Vector3(transform.position.x + .8f, transform.position.y);
+                    }
+                    else
+                    {
+                        renderer.flipX = true;
+                        shot_rigid.AddForce(new Vector2(-500, 0));
+                        shot.transform.position = new Vector3(transform.position.x - .8f, transform.position.y);
+                    }
+                    Destroy(shot, 2);
+                }
+            }
+        }
     }
 }

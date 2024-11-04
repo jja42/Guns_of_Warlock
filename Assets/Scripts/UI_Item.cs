@@ -40,6 +40,97 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
         }
     }
 
+    public void Click()
+    {
+        if (item != null)
+        {
+            if (item.owner == 1 && Game_Manager.instance.shopping)
+            {
+                if (Game_Manager.instance.money >= item.cost && Inventory.instance.characterItems.Count < 8)
+                {
+                    Game_Manager.instance.money -= item.cost;
+                    //if (Inventory.instance.CheckStackable(item.name) != null)
+                    //{
+                    //    Inventory.instance.StackItem(item.name);
+                    //}
+                    //else
+                    //{
+                    if (item.count == 1)
+                    {
+                        if (item.name.Equals("Shotgun"))
+                        {
+                            Data_Manager.instance.Flags[5] = true;
+                            Inventory.instance.ReplaceItem(item.name, 0);
+                        }
+                        if (item.name.Equals("Water Bolt"))
+                        {
+                            Data_Manager.instance.Flags[4] = true;
+                            Inventory.instance.ReplaceItem(item.name, 1);
+                        }
+                        if (item.name.Equals("Fireball"))
+                        {
+                            Data_Manager.instance.Flags[8] = true;
+                            Inventory.instance.ReplaceItem(item.name, 1);
+                        }
+                        if (item.name.Equals("Ring of Game Mechanic Progression"))
+                        {
+                            Data_Manager.instance.Flags[9] = true;
+                            Inventory.instance.GiveItem(item.name, true);
+                        }
+                        if (item.name.Equals("Juicy Anti-Anti-Warlock Juice Suit"))
+                        {
+                            Data_Manager.instance.Flags[7] = true;
+                            Inventory.instance.GiveItem(item.name, true);
+                        }
+                        Game_Manager.instance.RemoveShopItem(item);
+                    }
+                    else
+                    {
+                        Inventory.instance.GiveItem(item.name, false);
+                    }
+                }
+                Inventory.instance.TradeSound();
+                //}
+            }
+            else
+            {
+                if (Game_Manager.instance.shopping && item.cost > 0)
+                {
+                    Game_Manager.instance.money += item.cost / 2;
+                    Inventory.instance.RemoveItem(item.name, index);
+                    Inventory.instance.TradeSound();
+                }
+                else
+                {
+                    if (item.name.Equals("Small Health Potion"))
+                    {
+                        Game_Manager.instance.player_health += 1;
+                        Inventory.instance.SlurpSound();
+                        Inventory.instance.RemoveItem(item.name, index);
+                    }
+                    else
+                    {
+                        if (item.name.Equals("Large Health Potion"))
+                        {
+                            Game_Manager.instance.player_health += 2;
+                            Inventory.instance.SlurpSound();
+                            Inventory.instance.RemoveItem(item.name, index);
+                        }
+                        else
+                        {
+                            if (item.name.Equals("Invisibility Potion"))
+                            {
+                                Game_Manager.instance.invisible = true;
+                                Inventory.instance.SlurpSound();
+                                Inventory.instance.RemoveItem(item.name, index);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (item != null)
@@ -133,7 +224,6 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        print("L");
         if (item != null)
         {
             Item_Tooltip.enabled = true;
@@ -153,6 +243,35 @@ public class UI_Item : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler, 
             }
             Item_Tooltip.text += "\n";
             Item_Tooltip.text += item.description;
+        }
+    }
+
+    public void SelectItem()
+    {
+        if (item != null)
+        {
+            Item_Tooltip.enabled = true;
+            Item_Tooltip.rectTransform.position = transform.position;
+            Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x, Item_Tooltip.rectTransform.position.y - 100);
+            Item_Tooltip.text = item.name + " ";
+            if (item.cost > 0 && Game_Manager.instance.shopping)
+            {
+                Item_Tooltip.rectTransform.position = new Vector3(Item_Tooltip.rectTransform.position.x -150, Item_Tooltip.rectTransform.position.y);
+                if (item.owner == 1)
+                {
+                    Item_Tooltip.text += "(" + item.cost + "g)";
+                }
+                else
+                {
+                    Item_Tooltip.text += "(" + item.cost / 2 + "g)";
+                }
+            }
+            Item_Tooltip.text += "\n";
+            Item_Tooltip.text += item.description;
+        }
+        else
+        {
+            Item_Tooltip.enabled = false;
         }
     }
 

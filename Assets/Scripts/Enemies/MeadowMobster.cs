@@ -113,6 +113,6 @@ public class MeadowMobster : Enemy
     }
     protected void Jump()
     {
-        rigidbod.velocity = new Vector2(rigidbod.velocity.x, jumpforce);
+        rigidbod.linearVelocity = new Vector2(rigidbod.linearVelocity.x, jumpforce);
     }
 }

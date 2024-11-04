@@ -177,9 +177,9 @@ public class Suzanne : Enemy
     protected void Jump(bool dir)
     {
         if (dir)
-            rigidbod.velocity = new Vector2(jumpforce, jumpforce * 1.5f);
+            rigidbod.linearVelocity = new Vector2(jumpforce, jumpforce * 1.5f);
         else
-            rigidbod.velocity = new Vector2(-jumpforce, jumpforce * 1.5f);
+            rigidbod.linearVelocity = new Vector2(-jumpforce, jumpforce * 1.5f);
     }
     protected override void OnDeath()
     {

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    public static Shop instance;
     public List<UI_Item> UI_Items = new List<UI_Item>();
     public GameObject slotPrefab;
     public Transform slotPanel;
@@ -12,6 +13,15 @@ public class Shop : MonoBehaviour
     public GameObject ShopUI;
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
         for (int i = 0; i < numberOfSlots; i++)
         {
             GameObject obj = Instantiate(slotPrefab);
@@ -63,9 +73,5 @@ public class Shop : MonoBehaviour
     public void RemoveItem(Item item)
     {
         UpdateSlot(UI_Items.FindIndex(i => i == null || i.item == item), null);
-    }
-    public void ToggleShop()
-    {
-        ShopUI.SetActive(!ShopUI.activeSelf);
     }
 }

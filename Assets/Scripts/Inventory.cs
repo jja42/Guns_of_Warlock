@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public List<Item> characterItems = new List<Item>();
     UI_Inventory inventoryUI;
+    GameObject inventory;
     bool init;
     AudioSource audioSource;
     public AudioClip coin_sfx;
@@ -26,8 +27,7 @@ public class Inventory : MonoBehaviour
     }
     public void Start()
     {
-        inventoryUI = FindObjectOfType<UI_Inventory>();
-        inventoryUI.gameObject.SetActive(false);
+        inventoryUI = FindFirstObjectByType<UI_Inventory>();
         init = false;
         audioSource = GetComponent<AudioSource>();
     }
@@ -35,19 +35,16 @@ public class Inventory : MonoBehaviour
     {
         if(inventoryUI == null)
         {
-            inventoryUI = FindObjectOfType<UI_Inventory>();
-            inventoryUI.gameObject.SetActive(false);
+            inventoryUI = FindFirstObjectByType<UI_Inventory>();
             ReloadInventory();
         }
         if (!init)
         {
+            inventory = inventoryUI.transform.parent.gameObject;
             GiveItem("Gun",true);
             GiveItem("Acid Shot",true);
             init = true;
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+            inventory.SetActive(false);
         }
     }
     public void GiveItem(string itemName, bool iskeyitem)
@@ -130,5 +127,19 @@ public class Inventory : MonoBehaviour
             inventoryUI.AddNewItem(item);
             inventoryUI.gameObject.SetActive(state);
         }
+    }
+
+    public void OnOpenInventory()
+    {
+        inventory.SetActive(true);
+        Menu_Manager.instance.ChangeLayer(1);
+        Game_Manager.instance.UIFocus();
+    }
+
+    public void CloseInventory()
+    {
+        Menu_Manager.instance.ChangeLayer(0);
+        Game_Manager.instance.GameplayFocus();
+        inventory.SetActive(false);
     }
 }

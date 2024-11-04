@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
@@ -18,6 +20,7 @@ public class Game_Manager : MonoBehaviour
     GameObject Greg_NPC;
     float invisible_timer = 5;
     public bool invisible;
+    public PlayerInput input;
     // Start is called before the first frame update
     void Awake()
     {
@@ -55,14 +58,10 @@ public class Game_Manager : MonoBehaviour
             invisible = false;
         }
         player_health = Mathf.Clamp(player_health,0, 3);
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            paused = !paused;
-        }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("ShopkeeperHouse"))
         {
             if(shop == null)
-                shop = FindObjectOfType<Shop>();
+                shop = FindFirstObjectByType<Shop>();
         }
         else
         {
@@ -70,7 +69,7 @@ public class Game_Manager : MonoBehaviour
         }
         if(player == null)
         {
-            player = FindObjectOfType<PlayerCont>();
+            player = FindFirstObjectByType<PlayerCont>();
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GregShack")){
             Greg_NPC = GameObject.FindGameObjectWithTag("Greg");
@@ -97,8 +96,7 @@ public class Game_Manager : MonoBehaviour
     }
     public void ToggleShop()
     {
-        shop.ToggleShop();
-        shopping = !shopping;
+        UI_Manager.instance.ToggleShop();
     }
     public void KillPlayer()
     {
@@ -113,6 +111,7 @@ public class Game_Manager : MonoBehaviour
             StartCoroutine(FadetoBlack());
         }
     }
+
     public bool CanGetPosition()
     {
         if (Data_Manager.instance.Positions[SceneManager.GetActiveScene().buildIndex] != Vector3.zero)
@@ -140,5 +139,68 @@ public class Game_Manager : MonoBehaviour
         yield return new WaitForSeconds(5);
         LoadScene(11);
         Destroy(gameObject);
+    }
+
+    void OnMove(InputValue value)
+    {
+        Vector2 inputvector = value.Get<Vector2>();
+        player.PlayerMove(inputvector);
+    }
+
+    void OnJump()
+    {
+        player.PlayerJump();
+    }
+
+    void OnShoot()
+    {
+        player.PlayerShoot();
+    }
+
+    void OnRespawn()
+    {
+        player.PlayerRespawn();
+    }
+
+    void OnInteract()
+    {
+        player.PlayerInteract();
+    }
+
+    void OnPause()
+    {
+        if (!paused)
+        {
+            paused = true;
+            UIFocus();
+            UI_Manager.instance.PauseMenu();
+            Menu_Manager.instance.ChangeLayer(1);
+        }
+    }
+
+    public void GameplayFocus()
+    {
+        input.currentActionMap.Disable();
+        input.SwitchCurrentActionMap("Gameplay");
+        input.currentActionMap.Enable();
+    }
+
+    public void UIFocus()
+    {
+        input.currentActionMap.Disable();
+        input.SwitchCurrentActionMap("UI");
+        input.currentActionMap.Enable();
+    }
+
+    void OnNavigate()
+    {
+        if (input.currentActionMap.name == "UI")
+        {
+            UI_Item item = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<UI_Item>();
+            if (item != null)
+            {
+                item.SelectItem();
+            }
+        }
     }
 }

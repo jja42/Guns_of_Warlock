@@ -98,9 +98,9 @@ public class Bichon : Enemy
     protected void Jump(bool dir)
     {
         if(dir)
-            rigidbod.velocity = new Vector2(jumpforce, jumpforce);
+            rigidbod.linearVelocity = new Vector2(jumpforce, jumpforce);
         else
-            rigidbod.velocity = new Vector2(-jumpforce, jumpforce);
+            rigidbod.linearVelocity = new Vector2(-jumpforce, jumpforce);
     }
 
     protected override bool DetectPlayer()

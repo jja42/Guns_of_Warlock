@@ -10,7 +10,14 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     private Story story;
     public Text textPrefab;
@@ -104,9 +111,9 @@ public class DialogueManager : MonoBehaviour
 
     void eraseUI()
     {
-        for (int i = 0; i < this.transform.childCount; i++)
+        for (int i = transform.childCount-1; i >-1; i--)
         {
-            Destroy(this.transform.GetChild(i).gameObject);
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 
