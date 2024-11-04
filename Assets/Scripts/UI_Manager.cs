@@ -90,4 +90,10 @@ public class UI_Manager : MonoBehaviour
             Game_Manager.instance.GameplayFocus();
         }
     }
+
+    public void Respawn()
+    {
+        Unpause();
+        Game_Manager.instance.Respawn();
+    }
 }

@@ -157,7 +157,7 @@ public class Game_Manager : MonoBehaviour
         player.PlayerShoot();
     }
 
-    void OnRespawn()
+    public void Respawn()
     {
         player.PlayerRespawn();
     }
@@ -196,10 +196,13 @@ public class Game_Manager : MonoBehaviour
     {
         if (input.currentActionMap.name == "UI")
         {
-            UI_Item item = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<UI_Item>();
-            if (item != null)
+            if (EventSystem.current.currentSelectedGameObject != null)
             {
-                item.SelectItem();
+                UI_Item item = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<UI_Item>();
+                if (item != null)
+                {
+                    item.SelectItem();
+                }
             }
         }
     }
