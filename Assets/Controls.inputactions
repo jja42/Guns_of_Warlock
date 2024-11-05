@@ -75,7 +75,18 @@
                 {
                     "name": "",
                     "id": "f0c0bc9b-02f5-4ae0-813b-a4103fbca9f4",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91cd637e-d8b2-4e4c-9cec-43eb24361277",
+                    "path": "<AndroidGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -97,7 +108,18 @@
                 {
                     "name": "",
                     "id": "4e370cd4-86d0-4378-a5dc-40578c031402",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<SwitchProControllerHID>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bf9e677-d9dd-43f3-961b-33a91138338e",
+                    "path": "<AndroidGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -119,7 +141,18 @@
                 {
                     "name": "",
                     "id": "00cac904-1352-49a5-b439-c3000c9c84a6",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e6dbcc9-0761-43fe-b2af-560f8dad2525",
+                    "path": "<AndroidGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -218,7 +251,18 @@
                 {
                     "name": "",
                     "id": "b85824aa-b296-4aad-a594-3b6776a60b43",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<SwitchProControllerHID>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fad62670-c0ec-4c5f-9166-d2a056325857",
+                    "path": "<AndroidGamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -240,7 +284,18 @@
                 {
                     "name": "",
                     "id": "414feb03-f468-4c9b-9a22-33a13d507dad",
-                    "path": "<Gamepad>/start",
+                    "path": "<SwitchProControllerHID>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb1075f5-6155-44ad-8e94-4768f2a5162b",
+                    "path": "<AndroidGamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
