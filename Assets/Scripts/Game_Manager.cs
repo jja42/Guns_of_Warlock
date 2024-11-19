@@ -144,6 +144,7 @@ public class Game_Manager : MonoBehaviour
     void OnMove(InputValue value)
     {
         Vector2 inputvector = value.Get<Vector2>();
+        inputvector = inputvector.normalized;
         player.PlayerMove(inputvector);
     }
 
