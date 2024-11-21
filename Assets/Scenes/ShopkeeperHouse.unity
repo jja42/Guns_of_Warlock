@@ -1215,11 +1215,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24f9b318309fc54588c205f5d4c8d85, type: 3}
---- !u!1 &1564877258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2723160106574261526, guid: a24f9b318309fc54588c205f5d4c8d85, type: 3}
-  m_PrefabInstance: {fileID: 1234807665}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1877932091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1428,42 +1423,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6746281459565250518, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: m_Size.x
-      value: 0.7714052
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746281459565250518, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.8793893
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746281459565250518, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: m_Offset.x
-      value: -3.8385892
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746281459565250518, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.81030536
-      objectReference: {fileID: 0}
     - target: {fileID: 6746281459565250519, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
       propertyPath: m_Name
       value: ShopKeeper
       objectReference: {fileID: 0}
     - target: {fileID: 6746281459565250522, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: ShopUI
-      value: 
-      objectReference: {fileID: 1564877258}
-    - target: {fileID: 6746281459565250522, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
       propertyPath: slotPanel
       value: 
       objectReference: {fileID: 2143671362}
-    - target: {fileID: 6746281459565250522, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: Item_Tooltip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746281459565250523, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6746281459565250523, guid: a512228a5ad6d4844a3957f77ace22a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4

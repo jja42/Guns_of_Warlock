@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1600, y: 900}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1055,6 +1055,7 @@ MonoBehaviour:
   Fade: {fileID: 2783202390173906689}
   Pause: {fileID: 1955224297}
   ShopUI: {fileID: 2723160106574261526}
+  ShopPanel: {fileID: 2723160105415625955}
 --- !u!114 &6442627411245730234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,7 +1224,7 @@ GameObject:
   - component: {fileID: 2723160106574261521}
   m_Layer: 5
   m_Name: Shop
-  m_TagString: Untagged
+  m_TagString: ShopUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,9 +8,9 @@ public class Shop : MonoBehaviour
     public static Shop instance;
     public List<UI_Item> UI_Items = new List<UI_Item>();
     public GameObject slotPrefab;
-    public Transform slotPanel;
+    Transform slotPanel;
     public int numberOfSlots;
-    public GameObject ShopUI;
+    GameObject ShopUI;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,16 +21,17 @@ public class Shop : MonoBehaviour
         {
             instance = this;
         }
-
-        for (int i = 0; i < numberOfSlots; i++)
-        {
-            GameObject obj = Instantiate(slotPrefab);
-            obj.transform.SetParent(slotPanel);
-            UI_Items.Add(obj.GetComponentInChildren<UI_Item>());
-        }
     }
     private void Start()
     {
+        ShopUI = UI_Manager.instance.ShopUI;
+        slotPanel = UI_Manager.instance.ShopPanel;
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            GameObject obj = Instantiate(slotPrefab);
+            obj.transform.SetParent(slotPanel, false);
+            UI_Items.Add(obj.GetComponentInChildren<UI_Item>());
+        }
         GiveItem("Small Health Potion");
         GiveItem("Large Health Potion");
         GiveItem("Invisibility Potion");

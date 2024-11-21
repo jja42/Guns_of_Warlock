@@ -17,6 +17,7 @@ public class UI_Manager : MonoBehaviour
     float fade_float = 0;
     bool fading;
     public GameObject ShopUI;
+    public Transform ShopPanel;
     // Start is called before the first frame update
     private void Awake()
     {
